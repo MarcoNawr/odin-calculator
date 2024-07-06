@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ###########################################################################################################
+        root
+########################################################################################################### */
+:root{
+    --stdMargin: 0.2rem;
+    --stdPadding: 0.2rem;
+    --stdRadius:  0.1rem;
+    --stdFlexGap: 0.1rem;
+
+    --primaryColor600: #1f5e46;
+    --primaryColor500: #3d9775;
+    --primaryColor400: #5FBB97;
+    --primaryColor300: #94e6c6;
+    --primaryColor200: #d6f8eb;
+    --primaryColor100: #f2fcf8;
+
+    --secondaryColor600: #39074b;
+    --secondaryColor500: #5e117a;
+    --secondaryColor400: #7A229A;
+    --secondaryColor300: #a646c9;
+    --secondaryColor200: #cb6eec;
+    --secondaryColor100: #e9adff;
+}
+
+/* ###########################################################################################################
+        Basics
+########################################################################################################### */
+.btn{
+    border-radius: var(--stdRadius);
+    padding: 5px 10px 5px 10px;
+}
+
+
+/* ###########################################################################################################
+        .calculator
+########################################################################################################### */
+.calculator{
+    margin: 10px auto;
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid black;
+    max-width: 600px;
+    min-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ###########################################################################################################
+        .calculator ==> .displayCurrentCalculation
+########################################################################################################### */
+.displayCurrentCalculation{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid orange;
+}
+
+/* ###########################################################################################################
+        .calculator ==> .displayCurrentNumber
+########################################################################################################### */
+.displayCurrentNumber{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid orange;
+}
+
+
+/* ###########################################################################################################
+        .calculator ==> .btnContainers
+########################################################################################################### */
+.btnContainers{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid orange;
+
+    display: flex;
+    
+}
+
+
+/* ###########################################################################################################
+        .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers
+########################################################################################################### */
+.btnContainerFunktionsNumbers{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid green;
+
+    /*Flexchild*/
+    flex-grow: 3;
+
+    /*Flexparent*/
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* ###########################################################################################################
+        .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers ==> btnContainerFunktions
+########################################################################################################### */
+.btnContainerFunktions{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid blue;
+
+    display: flex;
+}
+
+/* ###########################################################################################################
+        .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers ==> btnContainerNumbers
+########################################################################################################### */
+.btnContainerNumbers{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid blue;
+
+    display: flex;
+}
+
+
+/* ###########################################################################################################
+        .calculator ==> .btnContainers ==> btnContainerOperatiors
+########################################################################################################### */
+.btnContainerOperatiors{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid green;
+
+    /*Flexchild*/
+    flex-grow: 1;
+    
+    /*Flexparent*/
+    display: flex;
+    flex-direction: column;
+}
+
+
