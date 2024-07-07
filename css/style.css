@@ -11,31 +11,74 @@
     --stdMargin: 0.2rem;
     --stdPadding: 0.2rem;
     --stdRadius:  0.1rem;
-    --stdFlexGap: 0.1rem;
+    --stdFlexGap: 0.3rem;
 
-    --primaryColor600: #1f5e46;
-    --primaryColor500: #3d9775;
+    /*BASIS: #5FBB97*/
+    --primaryColor900: #040a08;
+    --primaryColor800: #11281f;
+    --primaryColor700: #224f3d;
+    --primaryColor600: #32775c;
+    --primaryColor500: #439e7b;
     --primaryColor400: #5FBB97;
-    --primaryColor300: #94e6c6;
-    --primaryColor200: #d6f8eb;
-    --primaryColor100: #f2fcf8;
+    --primaryColor300: #7fc9ac;
+    --primaryColor200: #9fd6c1;
+    --primaryColor100: #bfe4d5;
+    --primaryColor050: #dff1ea;
+    --primaryColor025: #f7fcfa;
 
-    --secondaryColor600: #39074b;
-    --secondaryColor500: #5e117a;
+    /*BASIS: #7A229A*/
+    --secondaryColor900: #060208;
+    --secondaryColor800: #18071f;
+    --secondaryColor700: #310e3e;
+    --secondaryColor600: #49145c;
+    --secondaryColor500: #621b7b;
     --secondaryColor400: #7A229A;
-    --secondaryColor300: #a646c9;
-    --secondaryColor200: #cb6eec;
-    --secondaryColor100: #e9adff;
+    --secondaryColor300: #a42ecf;
+    --secondaryColor200: #bb61dc;
+    --secondaryColor100: #d295e8;
+    --secondaryColor050: #e8caf3;
+    --secondaryColor025: #f9f2fc;
 }
 
 /* ###########################################################################################################
         Basics
 ########################################################################################################### */
-.btn{
-    border-radius: var(--stdRadius);
-    padding: 5px 10px 5px 10px;
+.btnNumber {
+    font-family: arial;
+    font-weight: bold;
+    color: var(--secondaryColor025) !important;
+    font-size: 30px;
+    text-shadow: 0px 0px 0px var(--secondaryColor100);
+    box-shadow: 1px 1px 1px var(--secondaryColor600);
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: 2px solid var(--secondaryColor900);
+    background: var(--secondaryColor400);
+    background: linear-gradient(to top, var(--secondaryColor400), var(--secondaryColor900));
+}
+.btnNumber:hover {
+    color: #FFFFFF !important;
+    background: var(--secondaryColor400);
 }
 
+.btnNoNumber {
+    font-family: arial;
+    font-weight: bold;
+    color: var(--primaryColor025) !important;
+    font-size: 30px;
+    text-shadow: 0px 0px 0px var(--primaryColor100);
+    box-shadow: 1px 1px 1px var(--primaryColor600);
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: 2px solid var(--primaryColor900);
+    background: var(--primaryColor900);
+    background: linear-gradient(to top, var(--primaryColor900), var(--primaryColor400));
+}
+.btnNoNumber:hover {
+    color: #FFFFFF !important;
+    background: var(--primaryColor900);
+}
+  
 
 /* ###########################################################################################################
         .calculator
@@ -116,19 +159,24 @@
     border: 2px solid blue;
 
     display: flex;
+    justify-content: center;
+    gap: var(--stdFlexGap);
 }
 
 /* ###########################################################################################################
         .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers ==> btnContainerNumbers
 ########################################################################################################### */
-.btnContainerNumbers{
+.btnContainerNumbers1, .btnContainerNumbers2, .btnContainerNumbers3, .btnContainerNumbers4{
     margin: var(--stdMargin);
     padding: var(--stdPadding);
     border-radius: var(--stdRadius);
     border: 2px solid blue;
 
     display: flex;
+    justify-content: center;
+    gap: var(--stdFlexGap);
 }
+
 
 
 /* ###########################################################################################################
