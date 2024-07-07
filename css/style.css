@@ -53,12 +53,12 @@
         Basics
 ########################################################################################################### */
 .btn{
+    font-size: 1.2rem;
     /*felxcild*/
     flex-grow: 1;
 }
 
 /* inspired form gumroad website */
-   
 .btnNumber {
     color: #fff;
     cursor: pointer;
@@ -97,55 +97,21 @@
     box-shadow: none;
   }
 
-/*
-.btnNumber {
-    font-family: arial;
-    font-weight: bold;
-    color: var(--secondaryColor025) !important;
-    font-size: 30px;
-    text-shadow: 0px 0px 0px var(--secondaryColor100);
-    box-shadow: 1px 1px 1px var(--secondaryColor600);
-    padding: 10px 25px;
-    border-radius: 8px;
-    border: 2px solid var(--secondaryColor900);
-    background: var(--secondaryColor400);
-    background: linear-gradient(to top, var(--secondaryColor400), var(--secondaryColor900));
-}
-.btnNumber:hover {
-    color: #FFFFFF !important;
-    background: var(--secondaryColor400);
-}
-
-.btnNoNumber {
-    font-family: arial;
-    font-weight: bold;
-    color: var(--primaryColor025) !important;
-    font-size: 30px;
-    text-shadow: 0px 0px 0px var(--primaryColor100);
-    box-shadow: 1px 1px 1px var(--primaryColor600);
-    padding: 10px 25px;
-    border-radius: 8px;
-    border: 2px solid var(--primaryColor900);
-    background: var(--primaryColor900);
-    background: linear-gradient(to top, var(--primaryColor900), var(--primaryColor400));
-}
-.btnNoNumber:hover {
-    color: #FFFFFF !important;
-    background: var(--primaryColor900);
-}
-*/
-
 
 /* ###########################################################################################################
         .calculator
 ########################################################################################################### */
 .calculator{
     margin: 10px auto;
-    padding: var(--stdPadding);
+    padding: 20px;
     border-radius: var(--stdRadius);
     border: 2px solid black;
-    max-width: 600px;
+    max-width: 800px;
     min-width: 300px;
+
+    background-color: hsl(232.05deg 100% 93.71%);
+    box-shadow: 5px 5px 0px 2px #000000;
+
 
     display: flex;
     flex-direction: column;
@@ -155,20 +121,26 @@
         .calculator ==> .displayCurrentCalculation
 ########################################################################################################### */
 .displayCurrentCalculation{
-    margin: var(--stdMargin);
-    padding: var(--stdPadding);
+    text-align: right;
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
     border-radius: var(--stdRadius);
-    border: 2px solid orange;
+    background: #f1f1f1;
+    box-shadow: 5px 5px 0px 2px #000000;
 }
 
 /* ###########################################################################################################
         .calculator ==> .displayCurrentNumber
 ########################################################################################################### */
 .displayCurrentNumber{
-    margin: var(--stdMargin);
-    padding: var(--stdPadding);
+    text-align: right;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding: 10px 20px 10px 20px;
     border-radius: var(--stdRadius);
-    border: 2px solid orange;
+    background: #e0e0e0;
+    box-shadow: 5px 5px 0px 2px #000000;
 }
 
 
@@ -179,7 +151,7 @@
     margin: var(--stdMargin);
     padding: var(--stdPadding);
     border-radius: var(--stdRadius);
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
 
     display: flex;
     
@@ -193,7 +165,7 @@
     margin: var(--stdMargin);
     padding: var(--stdPadding);
     border-radius: var(--stdRadius);
-    border: 2px solid green;
+    /* border: 2px solid green; */
 
     /*Flexchild*/
     flex-grow: 3;
@@ -201,6 +173,7 @@
     /*Flexparent*/
     display: flex;
     flex-direction: column;
+    gap: var(--stdFlexGap);
 }
 
 
@@ -209,10 +182,7 @@
         .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers ==> btnContainerFunktions
 ########################################################################################################### */
 .btnContainerFunktions{
-    margin: var(--stdMargin);
-    padding: var(--stdPadding);
-    border-radius: var(--stdRadius);
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 
     display: flex;
     justify-content: center;
@@ -223,19 +193,13 @@
         .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers ==> btnContainerNumbers
 ########################################################################################################### */
 .btnContainerNumbers{
-    margin: var(--stdMargin);
-    padding: var(--stdPadding);
-    border-radius: var(--stdRadius);
-    border: 2px solid blue;
-
+    /* border: 2px solid blue; */
     display: flex;
+    gap: var(--stdFlexGap);
 }
 
 .btnContainerNumbers1, .btnContainerNumbers2, .btnContainerNumbers3{
-    margin: var(--stdMargin);
-    padding: var(--stdPadding);
-    border-radius: var(--stdRadius);
-    border: 2px solid lightblue;
+    /* border: 2px solid lightblue; */
 
     /*flexchild*/
     flex-grow: 1;
@@ -255,7 +219,7 @@
     margin: var(--stdMargin);
     padding: var(--stdPadding);
     border-radius: var(--stdRadius);
-    border: 2px solid green;
+    /* border: 2px solid green; */
 
     /*Flexchild*/
     flex-grow: 1;
