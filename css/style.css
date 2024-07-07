@@ -38,6 +38,15 @@
     --secondaryColor100: #d295e8;
     --secondaryColor050: #e8caf3;
     --secondaryColor025: #f9f2fc;
+
+    /*BTN's*/
+    --bgNumber: var(--secondaryColor500);
+    --bgNoNumber: var(--primaryColor600);
+    --hover-bgNumber: var(--secondaryColor050);
+    --hover-bgNoNumber: var(--primaryColor200);
+    --hover-textNumber: #000;
+    --hover-textNoNumber: #000;
+    
 }
 
 /* ###########################################################################################################
@@ -48,6 +57,47 @@
     flex-grow: 1;
 }
 
+/* inspired form gumroad website */
+   
+.btnNumber {
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid var(--bgNumber);
+    border-radius: 4px;
+    padding: 0.8em 2em;
+    background: var(--bgNumber);
+    transition: 0.2s;
+}
+.btnNoNumber {
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid var(--bgNoNumber);
+    border-radius: 4px;
+    padding: 0.8em 2em;
+    background: var(--bgNoNumber);
+    transition: 0.2s;
+}
+  
+  .btnNumber:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: var(--hover-bgNumber);
+    box-shadow: 0.25rem 0.25rem var(--bgNumber);
+  }
+
+  .btnNoNumber:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: var(--hover-bgNoNumber);
+    box-shadow: 0.25rem 0.25rem var(--bgNoNumber);
+  }
+  
+  .btnNumber:active, .btnNoNumber:active {
+    transform: translate(0);
+    box-shadow: none;
+  }
+
+/*
 .btnNumber {
     font-family: arial;
     font-weight: bold;
@@ -83,6 +133,7 @@
     color: #FFFFFF !important;
     background: var(--primaryColor900);
 }
+*/
 
 
 /* ###########################################################################################################
