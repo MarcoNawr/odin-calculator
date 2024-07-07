@@ -11,7 +11,7 @@
     --stdMargin: 0.2rem;
     --stdPadding: 0.2rem;
     --stdRadius:  0.1rem;
-    --stdFlexGap: 0.3rem;
+    --stdFlexGap: 0.4rem;
 
     /*BASIS: #5FBB97*/
     --primaryColor900: #040a08;
@@ -222,13 +222,26 @@
 /* ###########################################################################################################
         .calculator ==> .btnContainers ==> btnContainerFunktionsNumbers ==> btnContainerNumbers
 ########################################################################################################### */
-.btnContainerNumbers1, .btnContainerNumbers2, .btnContainerNumbers3, .btnContainerNumbers4{
+.btnContainerNumbers{
     margin: var(--stdMargin);
     padding: var(--stdPadding);
     border-radius: var(--stdRadius);
     border: 2px solid blue;
 
     display: flex;
+}
+
+.btnContainerNumbers1, .btnContainerNumbers2, .btnContainerNumbers3{
+    margin: var(--stdMargin);
+    padding: var(--stdPadding);
+    border-radius: var(--stdRadius);
+    border: 2px solid lightblue;
+
+    /*flexchild*/
+    flex-grow: 1;
+    /*flexparent*/
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: var(--stdFlexGap);
 }
