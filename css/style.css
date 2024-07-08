@@ -40,10 +40,14 @@
     --secondaryColor025: #f9f2fc;
 
     /*BTN's*/
-    --bgNumber: var(--secondaryColor500);
+   
+    --bgNumber: var(--primaryColor500);
     --bgNoNumber: var(--primaryColor600);
-    --hover-bgNumber: var(--secondaryColor050);
+    --bgEquals: var(--secondaryColor300);
+
+    --hover-bgNumber: var(--primaryColor200);
     --hover-bgNoNumber: var(--primaryColor200);
+    --hover-bgEquals: var(--secondaryColor100);
     --hover-textNumber: #000;
     --hover-textNoNumber: #000;
     
@@ -59,40 +63,53 @@
 }
 
 /* inspired form gumroad website */
-.btnNumber {
+.btnNumber, .btnNoNumber, .btnEquals {
     color: #fff;
     cursor: pointer;
-    border: 1px solid var(--bgNumber);
     border-radius: 4px;
     padding: 0.8em 2em;
-    background: var(--bgNumber);
     transition: 0.2s;
+}
+.btnNumber {
+    border: 1px solid var(--bgNumber);
+    background: var(--bgNumber);
 }
 .btnNoNumber {
-    color: #fff;
-    cursor: pointer;
+
     border: 1px solid var(--bgNoNumber);
-    border-radius: 4px;
-    padding: 0.8em 2em;
+
     background: var(--bgNoNumber);
-    transition: 0.2s;
+
 }
-  
-  .btnNumber:hover {
-    color: var(--hover-text);
+
+.btnEquals {
+    border: 1px solid var(--bgEquals);
+    background: var(--bgEquals);
+}
+
+.btnNumber:hover,  .btnNoNumber:hover, .btnEquals:hover  {
     transform: translate(-0.25rem, -0.25rem);
+}
+
+.btnNumber:hover {
+    color: var(--hover-text);
     background: var(--hover-bgNumber);
     box-shadow: 0.25rem 0.25rem var(--bgNumber);
   }
 
   .btnNoNumber:hover {
     color: var(--hover-text);
-    transform: translate(-0.25rem, -0.25rem);
     background: var(--hover-bgNoNumber);
     box-shadow: 0.25rem 0.25rem var(--bgNoNumber);
   }
   
-  .btnNumber:active, .btnNoNumber:active {
+  .btnEquals:hover {
+    color: var(--hover-text);
+    background: var(--hover-bgEquals);
+    box-shadow: 0.25rem 0.25rem var(--bgEquals);
+  }
+
+  .btnNumber:active, .btnNoNumber:active, .btnEquals:active {
     transform: translate(0);
     box-shadow: none;
   }
@@ -109,7 +126,14 @@
     max-width: 800px;
     min-width: 300px;
 
-    background-color: hsl(232.05deg 100% 93.71%);
+    /* background-color: hsl(232.05deg 100% 93.71%); */
+    background: hsla(186, 33%, 94%, 1);
+    background: linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EBF4F5", endColorstr="#B5C6E0", GradientType=1 );
+
+
     box-shadow: 5px 5px 0px 2px #000000;
 
 
