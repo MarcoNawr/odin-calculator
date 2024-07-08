@@ -219,7 +219,7 @@
     gap: var(--stdFlexGap);
 }
 
-.btnContainerNumbers1, .btnContainerNumbers2, .btnContainerNumbers3{
+.btnContainerNumberColumn1, .btnContainerNumberColumn2, .btnContainerNumberColumn3{
     /* border: 2px solid lightblue; */
 
     /*flexchild*/
