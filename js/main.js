@@ -158,3 +158,11 @@ function operate(a,b, operator){
       }
       return result;
 }
+
+function updatedisplayCurrentCalculation(){
+    
+}
+
+function updatedisplayCurrentNumber(){
+    
+}
