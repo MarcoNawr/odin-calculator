@@ -1,13 +1,13 @@
-<mxfile host="app.diagrams.net" modified="2024-07-09T15:10:13.409Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="zBOU7Pr7OjAlWBQXNDnz" version="24.6.4" type="github">
+<mxfile host="app.diagrams.net" modified="2024-07-09T15:26:58.922Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="GxmPZQMJvxyRRz6Cjv21" version="24.6.4" type="github">
   <diagram name="Seite-1" id="TULq9JBRfpRznfRxP_a6">
-    <mxGraphModel dx="3204" dy="2477" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2185" dy="1917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="A2neJB4XEHQH3khW_i38-1" value="initial calculator&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=general;" parent="1" vertex="1">
           <mxGeometry x="50" y="160" width="50" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="A2neJB4XEHQH3khW_i38-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="A2neJB4XEHQH3khW_i38-3" target="Fg-CaH6uWcmNjKKQL-Lb-23" edge="1">
+        <mxCell id="A2neJB4XEHQH3khW_i38-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="A2neJB4XEHQH3khW_i38-3" target="Fg-CaH6uWcmNjKKQL-Lb-53" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="777" y="185" as="targetPoint" />
           </mxGeometry>
@@ -133,7 +133,7 @@
             <mxGeometry x="500" y="45" width="270" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="displayCurrentNumber == 0?" firstNumber="0" placeholders="1" operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="0" id="Fg-CaH6uWcmNjKKQL-Lb-3">
+        <object label="&lt;span style=&quot;text-align: left; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;&lt;font color=&quot;#ff0303&quot;&gt;newNumberNeeded ?&lt;/font&gt;&lt;/span&gt;" firstNumber="0" placeholders="1" operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="0" id="Fg-CaH6uWcmNjKKQL-Lb-3">
           <mxCell style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;shadow=0;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" vertex="1" parent="1">
             <mxGeometry x="390" y="50" width="50" height="50" as="geometry" />
           </mxCell>
@@ -141,7 +141,7 @@
         <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fg-CaH6uWcmNjKKQL-Lb-4" target="Fg-CaH6uWcmNjKKQL-Lb-34">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <object label="&lt;div&gt;setFirstNumber(Number)&lt;/div&gt;updateDisplayCurrentNumber(getFirstNumber())" firstNumber="0" Operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="Number" id="Fg-CaH6uWcmNjKKQL-Lb-4">
+        <object label="&lt;div&gt;setFirstNumber(Number)&lt;/div&gt;updateDisplayCurrentNumber(getFirstNumber())&lt;div&gt;setNewNumberNeeded = false&lt;/div&gt;" firstNumber="0" Operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="Number" id="Fg-CaH6uWcmNjKKQL-Lb-4">
           <mxCell style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
             <mxGeometry x="245" y="-80" width="340" height="60" as="geometry" />
           </mxCell>
@@ -154,11 +154,21 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-58" value="false" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fg-CaH6uWcmNjKKQL-Lb-5">
+          <mxGeometry x="0.0952" y="-1" relative="1" as="geometry">
+            <mxPoint x="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Fg-CaH6uWcmNjKKQL-Lb-3" target="Fg-CaH6uWcmNjKKQL-Lb-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-11" value="yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fg-CaH6uWcmNjKKQL-Lb-10">
           <mxGeometry x="-0.3333" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-57" value="true" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fg-CaH6uWcmNjKKQL-Lb-10">
+          <mxGeometry x="-0.3796" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -182,7 +192,7 @@
             <mxPoint y="-4" as="offset" />
           </mxGeometry>
         </mxCell>
-        <object label="&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI Variable&amp;quot;, &amp;quot;Segoe UI&amp;quot;, system-ui, ui-sans-serif, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 14px; text-align: start; text-wrap: wrap;&quot;&gt;&lt;font color=&quot;#f70a0a&quot;&gt;operatorLeadsToCalculation &lt;/font&gt;== false&lt;/span&gt;" firstNumber="0" placeholders="1" operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="0" operatorLeadsToCalculation="false" id="Fg-CaH6uWcmNjKKQL-Lb-23">
+        <object label="&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI Variable&amp;quot;, &amp;quot;Segoe UI&amp;quot;, system-ui, ui-sans-serif, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 14px; text-align: start; text-wrap: wrap;&quot;&gt;&lt;font color=&quot;#f70a0a&quot;&gt;operatorLeadsToCalculation?&lt;/font&gt;&lt;/span&gt;" firstNumber="0" placeholders="1" operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="0" operatorLeadsToCalculation="false" id="Fg-CaH6uWcmNjKKQL-Lb-23">
           <mxCell style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;shadow=0;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" vertex="1" parent="1">
             <mxGeometry x="970" y="160" width="50" height="50" as="geometry" />
           </mxCell>
@@ -195,10 +205,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-30" value="&lt;div&gt;setOperator(operator)&lt;/div&gt;setSecondNumber(displayCurrentNumber)&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;result = operate(getFirstNumber(), getSecondNumber(), getOperator())&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-30" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;setSecondNumber(displayCurrentNumber)&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;result = operate(getFirstNumber(), getSecondNumber(), getOperator())&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
           <mxGeometry x="1170" y="125" width="390" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-32" value="setOperator (operator)&lt;div&gt;&lt;/div&gt;&lt;div&gt;updateDisplayCurrentCalculation(getFirstNumber + getOperator)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-32" value="&lt;div&gt;updateDisplayCurrentCalculation(getFirstNumber + getOperator)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
           <mxGeometry x="830" y="-10" width="330" height="60" as="geometry" />
         </mxCell>
         <object label="displayCurrentCalculation = &quot;&quot;?" firstNumber="0" placeholders="1" operator="empty" secondNumber="0" displayCurrentCalculation="empty" displayCurrentNumber="0" id="Fg-CaH6uWcmNjKKQL-Lb-34">
@@ -238,10 +248,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-47" value="&lt;b style=&quot;&quot;&gt;&lt;u&gt;Initial Values:&lt;/u&gt;&lt;/b&gt;&lt;div style=&quot;&quot;&gt;firstNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operator = &quot;&quot;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operatorLeadsToCalculation = false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 0&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="-220" y="140" width="230" height="100" as="geometry" />
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-47" value="&lt;b style=&quot;&quot;&gt;&lt;u&gt;Initial Values:&lt;/u&gt;&lt;/b&gt;&lt;div style=&quot;&quot;&gt;firstNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operator = &quot;&quot;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operatorLeadsToCalculation = false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = true&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-220" y="140" width="230" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-50" value="&lt;div&gt;setFirstNumber(Result)&lt;/div&gt;&lt;div&gt;updateDisplayCurrentNumber(Result)&lt;/div&gt;&lt;div&gt;updateDisplayCurrentCallculation(Result+getOperator())&lt;br&gt;&lt;/div&gt;&lt;div&gt;setOperatorLeadsToCalculation = false&lt;br&gt;&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-50" value="&lt;div&gt;setFirstNumber(Result)&lt;/div&gt;&lt;div&gt;updateDisplayCurrentNumber(Result)&lt;/div&gt;&lt;div&gt;updateDisplayCurrentCallculation(Result+getOperator())&lt;br&gt;&lt;/div&gt;&lt;div&gt;setOperatorLeadsToCalculation = false&lt;br&gt;&lt;/div&gt;&lt;div&gt;setNewNumberNeeded = true&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
           <mxGeometry x="1610" y="120" width="430" height="130" as="geometry" />
         </mxCell>
         <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Fg-CaH6uWcmNjKKQL-Lb-30" target="Fg-CaH6uWcmNjKKQL-Lb-50">
@@ -255,6 +265,15 @@
               <mxPoint x="170" y="185" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-53" value="setOperator (operator)" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
+          <mxGeometry x="540" y="155" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Fg-CaH6uWcmNjKKQL-Lb-53" target="Fg-CaH6uWcmNjKKQL-Lb-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fg-CaH6uWcmNjKKQL-Lb-55" value="setNewNumberNeeded = true" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
+          <mxGeometry x="827" y="-170" width="330" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
