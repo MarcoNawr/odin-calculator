@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-07-10T04:54:46.103Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="WTDFfEXI7Su_SN6MtvfZ" version="24.6.4" type="github">
+<mxfile host="app.diagrams.net" modified="2024-07-10T05:08:08.549Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="3MxRbfC4ghoZti1W3SVD" version="24.6.4" type="github">
   <diagram name="Seite-1" id="TULq9JBRfpRznfRxP_a6">
     <mxGraphModel dx="5179" dy="4269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -373,7 +373,7 @@
         <mxCell id="bzTohuIg5KcH0WSMDgMn-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="bzTohuIg5KcH0WSMDgMn-25" target="bzTohuIg5KcH0WSMDgMn-24" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bzTohuIg5KcH0WSMDgMn-32" value="&lt;div style=&quot;&quot;&gt;Fall A (Click: Number)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;operator = &quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumberValue = Number OR Oldnumber &amp;amp; Number&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumberIsSet = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumberIsSet = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operatorLeadsToCalculation = false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;commaIsSet= false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="bzTohuIg5KcH0WSMDgMn-32" value="&lt;div style=&quot;&quot;&gt;Fall A (Click: Number)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;operator = &quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumberValue = Number OR Oldnumber &amp;amp; Number&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumberIsSet = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumberIsSet = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operatorLeadsToCalculation = false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;commaIsSet= false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="1620" y="1050" width="380" height="240" as="geometry" />
         </mxCell>
         <mxCell id="bzTohuIg5KcH0WSMDgMn-34" value="&lt;span style=&quot;text-align: left;&quot;&gt;setOperator(Operator)&lt;/span&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="1" vertex="1">
@@ -420,6 +420,15 @@
             <mxPoint x="790" y="1400" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="SQ6d-c_O_gUoqqVQVbk4-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="SQ6d-c_O_gUoqqVQVbk4-11" target="bzTohuIg5KcH0WSMDgMn-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2380" y="1000" />
+              <mxPoint x="130" y="1000" />
+              <mxPoint x="130" y="1355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-11" value="&lt;span style=&quot;text-align: left;&quot;&gt;setDisplayCurrentCalculation(Operator,&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: left;&quot;&gt;displayCurrentNumberValue&lt;/span&gt;&lt;span style=&quot;text-align: left;&quot;&gt;)&lt;/span&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
           <mxGeometry x="2130" y="1515" width="500" height="60" as="geometry" />
         </mxCell>
@@ -432,7 +441,7 @@
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-13" value="&lt;span style=&quot;text-align: left;&quot;&gt;setFirstNumber(currentDisplayValue)&lt;/span&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
           <mxGeometry x="830" y="1370" width="300" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="SQ6d-c_O_gUoqqVQVbk4-15" value="&lt;div style=&quot;&quot;&gt;Fall A (Click: Operator)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumber = displayCurrentNumberValue&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;operator = Operator (e.g. &quot;+&quot;)&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumberValue = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumberIsSet = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumberIsSet = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operatorLeadsToCalculation = false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;commaIsSet= false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="SQ6d-c_O_gUoqqVQVbk4-15" value="&lt;div style=&quot;&quot;&gt;Fall A (Click: Operator)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumber = displayCurrentNumberValue&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;operator = Operator (e.g. &quot;+&quot;)&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumberValue = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumberIsSet = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumberIsSet = false&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;operatorLeadsToCalculation = false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;commaIsSet= false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="2750" y="1280" width="490" height="240" as="geometry" />
         </mxCell>
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-16" value="&lt;span style=&quot;text-align: left;&quot;&gt;setFirstNumberIsSet(true)&lt;/span&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="1">
@@ -450,15 +459,6 @@
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="SQ6d-c_O_gUoqqVQVbk4-16" target="SQ6d-c_O_gUoqqVQVbk4-18">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SQ6d-c_O_gUoqqVQVbk4-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="SQ6d-c_O_gUoqqVQVbk4-11" target="bzTohuIg5KcH0WSMDgMn-10">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="2231" y="980" />
-              <mxPoint x="150" y="980" />
-              <mxPoint x="150" y="1355" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-24" value="&lt;div style=&quot;text-align: left; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;" vertex="1" parent="1">
           <mxGeometry x="1980" y="1520" width="50" height="50" as="geometry" />
         </mxCell>
@@ -467,9 +467,6 @@
         </mxCell>
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="SQ6d-c_O_gUoqqVQVbk4-24" target="SQ6d-c_O_gUoqqVQVbk4-11">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="SQ6d-c_O_gUoqqVQVbk4-27" value="&lt;div style=&quot;&quot;&gt;Fall A (Click: Number (2), Operator (+), Number (3), Operator (-)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumber = 5&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 3&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;operator = &quot;-&quot;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumberValue = 5&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumberIsSet = true&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font color=&quot;#ff0303&quot;&gt;secondNumberIsSet = false&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#ff0303&quot;&gt;operatorLeadsToCalculation = false&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;commaIsSet= false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentCalculation = &quot;5-&quot;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumber = 5&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 5&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="3755" y="1790" width="380" height="240" as="geometry" />
         </mxCell>
         <mxCell id="SQ6d-c_O_gUoqqVQVbk4-28" value="&lt;div style=&quot;text-align: left; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;newNumberNeeded?&lt;br&gt;&lt;/div&gt;" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;" vertex="1" parent="1">
           <mxGeometry x="450" y="1565" width="50" height="50" as="geometry" />
@@ -544,10 +541,13 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="3600" y="950" />
-              <mxPoint x="150" y="950" />
-              <mxPoint x="150" y="1355" />
+              <mxPoint x="110" y="950" />
+              <mxPoint x="110" y="1355" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="SQ6d-c_O_gUoqqVQVbk4-50" value="&lt;div style=&quot;&quot;&gt;Fall A (Click: Number (2), Operator (+), Number (3), Operator (-), Number (1) + Operator (*))&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumber = 4&lt;/div&gt;&lt;div style=&quot;&quot;&gt;secondNumber = 1&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;operator = &quot;*&quot;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumberValue = 4&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;firstNumberIsSet = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#ff0303&quot;&gt;&lt;strike&gt;secondNumberIsSet = false&lt;br&gt;&lt;/strike&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#ff0303&quot;&gt;&lt;strike&gt;operatorLeadsToCalculation = false&lt;/strike&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;newNumberNeeded = true&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;commaIsSet= false&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentCalculation = &quot;4*&quot;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;displayCurrentNumber = 4&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;result = 4&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="3910" y="1580" width="535" height="240" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
