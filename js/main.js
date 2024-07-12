@@ -166,3 +166,41 @@ function updatedisplayCurrentCalculation(){
 function updatedisplayCurrentNumber(){
     
 }
+
+function numberClicked(){
+    // Case 1 ==> NEW NUMBER
+    // IF a Number was clicked AND... THEN set clicked Number as new Number within displayCurrentNumber
+
+    // Case 2 ==> APPEND NUMBER
+    // IF a Number was clicked AND... THEN append clicked Number to the currently displayed Number within displayCurrentNumber
+
+    // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
+    // IF a Number was clicked AND... THEN 
+        // clear the displayCurrentCalculation 
+        // AND set clicked Number as new Number within displayCurrentNumber
+
+}
+
+function operatorClicked(){
+    // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
+    // IF an Operator out of (+-*/=) was clicked AND... THEN set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
+    
+    // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION
+    // IF an Operator out of (+-*/) was clicked AND... THEN
+        // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
+        // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+        // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
+
+    // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
+    // IF the Operator = was clicked AND... THEN 
+        // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
+        // AND set displayCurrentCalculation to x (firstNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
+        // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+        
+
+    // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION 
+    // IF the Operator = was clicked AND... THEN
+        // calculate x (displayCurrentNumber) operator (last clicked Operator) y (last clicked Number) 
+        // AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
+        // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber/last clicked Number) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
+}
