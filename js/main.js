@@ -185,7 +185,7 @@ function operatorClicked(){
     // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
     // IF an Operator out of (+-*/=) was clicked AND... THEN set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
     
-    // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION
+    // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
     // IF an Operator out of (+-*/) was clicked AND... THEN
         // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
         // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
@@ -198,9 +198,24 @@ function operatorClicked(){
         // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
         
 
-    // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION 
+    // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as firstNumber / second number does not change)
     // IF the Operator = was clicked AND... THEN
-        // calculate x (displayCurrentNumber) operator (last clicked Operator) y (last clicked Number) 
+        // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber) 
         // AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
-        // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber/last clicked Number) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
+        // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
+
+    // Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as firstNumber / second number does not change)
+    // IF the Operator = was clicked AND... THEN
+        // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber from Last Calculation) 
+        // AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
+        // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
+
+    // Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
+    // IF the Operator , was clicked AND... THEN
+        // Append , to displayCurrentNumber
+        // AND don't allow another ,
+
+    // Case 7 (NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
+    // IF the Operator NEGATE was clicked AND... THEN
+        // negate displayCurrentNumber (only if not 0)
 }
