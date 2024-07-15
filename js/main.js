@@ -218,9 +218,8 @@ function operatorClicked(operator){
 
     
     // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
-    // IF an Operator out of (+-*/=) was clicked AND... THEN set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
-    
-    combineOperatorWithNumber();
+    // IF an Operator out of (+-*/=) was clicked THEN set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
+    combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
 
     // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
     // IF an Operator out of (+-*/) was clicked AND... THEN
