@@ -6,6 +6,8 @@ let lastOperator = "";
 let secondNumber = 0;
 let result = 0;
 let commaAppended = false;
+let nextNumberWillAppend = false;
+let nextNumberWillClearCalculationDisplay= false;
 
 
 /* #######################################################################
@@ -44,43 +46,43 @@ btnBackspace.addEventListener("click", () => {
 });
 
 btn1.addEventListener("click", () => {
-    alert("btn1 was clicked");
+    numberClicked(btn1.textContent);
 });
 
 btn2.addEventListener("click", () => {
-    alert("btn2 was clicked");
+    numberClicked(btn2.textContent);
 });
 
 btn3.addEventListener("click", () => {
-    alert("btn3 was clicked");
+    numberClicked(btn3.textContent);
 });
 
 btn4.addEventListener("click", () => {
-    alert("btn4 was clicked");
+    numberClicked(btn4.textContent);
 });
 
 btn5.addEventListener("click", () => {
-    alert("btn5 was clicked");
+    numberClicked(btn5.textContent);
 });
 
 btn6.addEventListener("click", () => {
-    alert("btn6 was clicked");
+    numberClicked(btn6.textContent);
 });
 
 btn7.addEventListener("click", () => {
-    alert("btn7 was clicked");
+    numberClicked(btn7.textContent);
 });
 
 btn8.addEventListener("click", () => {
-    alert("btn8 was clicked");
+    numberClicked(btn8.textContent);
 });
 
 btn9.addEventListener("click", () => {
-    alert("btn9 was clicked");
+    numberClicked(btn9.textContent);
 });
 
 btn0.addEventListener("click", () => {
-    alert("btn0 was clicked");
+    numberClicked(btn0.textContent);
 });
 
 btnComma.addEventListener("click", () => {
@@ -119,9 +121,13 @@ function clearAll(){
     firstNumber = 0;
     lastOperator = "";
     secondNumber = 0;
+    result = 0;
+    commaAppended = false;
+    nextNumberWillAppend = false;
+    nextNumberWillClearCalculationDisplay = false;
+
     displayCurrentCalculation.textContent = "";
     displayCurrentNumber.textContent = "0";
-    commaAppended = false;
 }
 
 function add(a,b){
@@ -161,18 +167,41 @@ function calculate(a, operator, b){
       return result;
 }
 
-function numberClicked(){
-    // Case 1 ==> NEW NUMBER
-    // IF a Number was clicked AND... THEN set clicked Number as new Number within displayCurrentNumber
+function numberClicked(number){
 
-    // Case 2 ==> APPEND NUMBER
-    // IF a Number was clicked AND... THEN append clicked Number to the currently displayed Number within displayCurrentNumber
+    alert("Number was clicked: "+ number);
+    
+    /*
+    firstNumber = 0;
+    lastOperator = "";
+    secondNumber = 0;
+    result = 0;
+    commaAppended = false;
+    nextNumberWillAppend = false;
+    nextNumberWillClearCalculationDisplay=false;
 
-    // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
-    // IF a Number was clicked AND... THEN 
+    displayCurrentCalculation.textContent = "";
+    displayCurrentNumber.textContent = "0";
+    */
+
+    
+    if(!nextNumberWillAppend && nextNumberWillClearCalculationDisplay){
+        // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
+        // IF a Number was clicked 
+        //AND nextNumberWillAppend = false
+        //AND ... THEN 
         // clear the displayCurrentCalculation 
         // AND set clicked Number as new Number within displayCurrentNumber
-
+        newNumberWithClear(number);
+    } else if(!nextNumberWillAppend){
+        // Case 1 ==> NEW NUMBER
+        // IF a Number was clicked AND nextNumberWillAppend = false THEN set clicked Number as new Number within displayCurrentNumber
+        newNumber(number);
+    } else{
+        // Case 2 ==> APPEND NUMBER
+        // IF a Number was clicked AND nextNumberWillAppend = true THEN append clicked Number to the currently displayed Number within displayCurrentNumber
+        appendNumber(number);
+    }
 }
 
 function operatorClicked(){
@@ -218,12 +247,12 @@ function operatorClicked(){
 // Case N1
 function newNumber(number){
     displayCurrentNumber.textContent = number;
+    nextNumberWillAppend = true;
 }
 
 //Case N2
 function appendNumber(number){
-    displayCurrentNumber.textContent.concat(number);
-    //ODER displayCurrentNumber.textContent += number;
+    displayCurrentNumber.textContent +=number;6
 }
 
 //Case N3
