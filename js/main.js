@@ -276,7 +276,7 @@ function newNumberWithClear(number){
 function combineOperatorWithNumber (number,operator){
     firstNumber = number;
     lastOperator = operator;
-    displayCurrentCalculation.textContent = firstNumber + operator;
+    displayCurrentCalculation.textContent = firstNumber + " " + operator;
 }
 
 //Case O2
