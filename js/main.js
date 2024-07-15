@@ -188,10 +188,11 @@ function numberClicked(number){
     if(!nextNumberWillAppend && nextNumberWillClearCalculationDisplay){
         // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
         // IF a Number was clicked 
-        //AND nextNumberWillAppend = false
-        //AND ... THEN 
-        // clear the displayCurrentCalculation 
-        // AND set clicked Number as new Number within displayCurrentNumber
+            //AND nextNumberWillAppend = false
+            //AND nextNumberWillClearCalculationDisplay = true 
+        //THEN 
+            // clear the displayCurrentCalculation 
+            // AND set clicked Number as new Number within displayCurrentNumber
         newNumberWithClear(number);
     } else if(!nextNumberWillAppend){
         // Case 1 ==> NEW NUMBER
