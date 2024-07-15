@@ -169,7 +169,7 @@ function calculate(a, operator, b){
 
 function numberClicked(number){
 
-    alert("Number was clicked: "+ number);
+    
     
     /*
     firstNumber = 0;
