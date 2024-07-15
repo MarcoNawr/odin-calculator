@@ -86,31 +86,31 @@ btn0.addEventListener("click", () => {
 });
 
 btnComma.addEventListener("click", () => {
-    alert("btnComma was clicked");
+    appendComma();
 });
 
 btnNegate.addEventListener("click", () => {
-    alert("btnNegate was clicked");
+    negate();
 });
 
 btnDivide.addEventListener("click", () => {
-    alert("btnDivide was clicked");
+    operatorClicked(btnDivide.textContent);
 });
 
 btnMultiply.addEventListener("click", () => {
-    alert("btnMultiply was clicked");
+    operatorClicked(btnMultiply.textContent);
 });
 
 btnSubtract.addEventListener("click", () => {
-    alert("btnSubtract was clicked");
+    operatorClicked(btnSubtract.textContent);
 });
 
 btnAdd.addEventListener("click", () => {
-    alert("btnAdd was clicked");
+    operatorClicked(btnAdd.textContent);
 });
 
 btnResult.addEventListener("click", () => {
-    alert("btnResult was clicked");
+    operatorClicked(btnResult.textContent);
 });
 
 
@@ -168,9 +168,6 @@ function calculate(a, operator, b){
 }
 
 function numberClicked(number){
-
-    
-    
     /*
     firstNumber = 0;
     lastOperator = "";
@@ -184,7 +181,6 @@ function numberClicked(number){
     displayCurrentNumber.textContent = "0";
     */
 
-    
     if(!nextNumberWillAppend && nextNumberWillClearCalculationDisplay){
         // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
         // IF a Number was clicked 
@@ -205,10 +201,27 @@ function numberClicked(number){
     }
 }
 
-function operatorClicked(){
+function operatorClicked(operator){
+    /*
+    firstNumber = 0;
+    lastOperator = "";
+    secondNumber = 0;
+    result = 0;
+    commaAppended = false;
+    nextNumberWillAppend = false;
+    nextNumberWillClearCalculationDisplay=false;
+
+    displayCurrentCalculation.textContent = "";
+    displayCurrentNumber.textContent = "0";
+    */
+   alert("last clicked Operator: " + lastOperator + " --- Current clicked Operator:" + operator);
+
+    
     // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
     // IF an Operator out of (+-*/=) was clicked AND... THEN set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
     
+    combineOperatorWithNumber();
+
     // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
     // IF an Operator out of (+-*/) was clicked AND... THEN
         // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
@@ -234,17 +247,11 @@ function operatorClicked(){
         // AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
         // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
 
-    // Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
-    // IF the Operator , was clicked AND... THEN
-        // Append , to displayCurrentNumber
-        // AND don't allow another ,
-
-    // Case 7 (NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
-    // IF the Operator NEGATE was clicked AND... THEN
-        // negate displayCurrentNumber (only if not 0)
 }
 
-// Number Functions
+/* ########################################
+    Funktion Declaration for Numbers
+##########################################*/
 // Case N1
 function newNumber(number){
     displayCurrentNumber.textContent = number;
@@ -262,7 +269,10 @@ function newNumberWithClear(number){
     displayCurrentCalculation.textContent = "";
 }
 
-// Operator Functions
+
+/* ########################################
+    Funktion Declaration for Operators
+##########################################*/
 //Case O1
 function combineOperatorWithNumber (number,operator){
     displayCurrentCalculation.textContent = number + operator;
@@ -291,16 +301,25 @@ function equalsLeadsToRepeatedCalculation(x, operator, y){
 }
 
 
-//Case O6
+//Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
+    // IF the Operator , was clicked AND commaAppended = false THEN
+        // Append , to displayCurrentNumber
+        // AND don't allow another ,
 function appendComma(){
-    displayCurrentNumber.textContent.concat(","); 
+    if(!commaAppended){
+    displayCurrentNumber.textContent += ","; 
     commaAppended = true;
-}
-
-//Case O7
-function negate(){
-    if(displayCurrentNumber!="0"){
-        displayCurrentNumber.textContent = (parseInt(displayCurrentNumber.textContent))*-1;
     }
 }
+
+//Case 7 (NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
+    // IF the Operator NEGATE was clicked AND displayCurrentNumber!=0 THEN
+        // negate displayCurrentNumber
+function negate(){
+    if(displayCurrentNumber!="0"){
+        let negatedNumber = parseFloat(displayCurrentNumber.textContent.replace(",","."))*-1;
+        displayCurrentNumber.textContent = negatedNumber.toString().replace(".", ",");
+    }
+}
+
 
