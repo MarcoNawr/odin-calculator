@@ -277,6 +277,7 @@ function combineOperatorWithNumber (number,operator){
     firstNumber = number;
     lastOperator = operator;
     displayCurrentCalculation.textContent = firstNumber + " " + operator;
+    nextNumberWillAppend = false;
 }
 
 //Case O2
