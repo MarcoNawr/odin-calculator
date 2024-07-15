@@ -2,9 +2,10 @@
     Variables
 #######################################################################*/
 let firstNumber = 0;
-let operator = "";
+let lastOperator = "";
 let secondNumber = 0;
 let result = 0;
+let commaAppended = false;
 
 
 /* #######################################################################
@@ -116,10 +117,11 @@ btnResult.addEventListener("click", () => {
 #######################################################################*/
 function clearAll(){
     firstNumber = 0;
-    operator = "";
+    lastOperator = "";
     secondNumber = 0;
     displayCurrentCalculation.textContent = "";
     displayCurrentNumber.textContent = "0";
+    commaAppended = false;
 }
 
 function add(a,b){
@@ -138,7 +140,7 @@ function divide(a,b){
     return a/b;
 }
 
-function operate(a,b, operator){
+function calculate(a, operator, b){
     result = 0;
     switch (operator) {
         case "+":
@@ -157,14 +159,6 @@ function operate(a,b, operator){
             alert("Something wrong with the operator!");
       }
       return result;
-}
-
-function updatedisplayCurrentCalculation(){
-    
-}
-
-function updatedisplayCurrentNumber(){
-    
 }
 
 function numberClicked(){
@@ -219,3 +213,64 @@ function operatorClicked(){
     // IF the Operator NEGATE was clicked AND... THEN
         // negate displayCurrentNumber (only if not 0)
 }
+
+// Number Functions
+// Case N1
+function newNumber(number){
+    displayCurrentNumber.textContent = number;
+}
+
+//Case N2
+function appendNumber(number){
+    displayCurrentNumber.textContent.concat(number);
+    //ODER displayCurrentNumber.textContent += number;
+}
+
+//Case N3
+function newNumberWithClear(number){
+    displayCurrentNumber.textContent = number;
+    displayCurrentCalculation.textContent = "";
+}
+
+// Operator Functions
+//Case O1
+function combineOperatorWithNumber (number,operator){
+    displayCurrentCalculation.textContent = number + operator;
+}
+
+//Case O2
+function operatorLeadsToCalculation(x, operator, y){
+    result = calculate(x,operator, y);
+    displayCurrentNumber.textContent = result;
+    displayCurrentCalculation.textContent = result + operator;
+}
+
+//Case O3
+function equalsLeadsToCalculation(x, operator, y){
+    result = calculate(x,operator, y);
+    displayCurrentCalculation.textContent = x + operator + y + "=";
+    displayCurrentNumber.textContent = result;
+    
+}
+
+//Case O4 AND Case 05 (Same behavior / different arguments)
+function equalsLeadsToRepeatedCalculation(x, operator, y){
+    result = calculate(x,operator, y);
+    displayCurrentNumber.textContent = result;
+    displayCurrentCalculation.textContent = result + operator + y + "=";    
+}
+
+
+//Case O6
+function appendComma(){
+    displayCurrentNumber.textContent.concat(","); 
+    commaAppended = true;
+}
+
+//Case O7
+function negate(){
+    if(displayCurrentNumber!="0"){
+        displayCurrentNumber.textContent = (parseInt(displayCurrentNumber.textContent))*-1;
+    }
+}
+
