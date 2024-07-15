@@ -274,7 +274,9 @@ function newNumberWithClear(number){
 ##########################################*/
 //Case O1
 function combineOperatorWithNumber (number,operator){
-    displayCurrentCalculation.textContent = number + operator;
+    firstNumber = number;
+    lastOperator = operator;
+    displayCurrentCalculation.textContent = firstNumber + operator;
 }
 
 //Case O2
