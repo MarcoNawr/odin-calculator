@@ -113,7 +113,8 @@ btnResult.addEventListener("click", () => {
     operatorClicked(btnResult.textContent);
 });
 
-
+//TODO: Nice Highlighted Comment
+//FIXME: Nice Highlighted Comment
 /* #######################################################################
     Funktion Declaration
 #######################################################################*/
