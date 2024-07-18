@@ -284,7 +284,6 @@ function newNumber(number) {
 //Case N2
 function appendNumber(number) {
   displayCurrentNumber.textContent += number;
-  6;
 }
 
 //Case N3
