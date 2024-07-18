@@ -216,7 +216,6 @@ function operatorClicked(operator){
     */
    alert("last clicked Operator: " + lastOperator + " --- Current clicked Operator:" + operator);
 
-    
     // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
         // IF 
             //an Operator out of (+-*/=) was clicked 
