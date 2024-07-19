@@ -311,6 +311,7 @@ function appendNumber(number) {
 function newNumberWithClear(number) {
   displayCurrentNumber.textContent = number;
   displayCurrentCalculation.textContent = "";
+  nextNumberWillAppend = true;
 }
 
 /* ########################################
@@ -333,6 +334,7 @@ function operatorLeadsToCalculation(x, operator, y) {
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
     replaceDotWithComma(result.toString()) + operator;
+  nextNumberWillAppend = false;
 }
 
 //Case O3
@@ -340,6 +342,7 @@ function equalsLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y);
   displayCurrentCalculation.textContent = x + operator + y + "=";
   displayCurrentNumber.textContent = result;
+  nextNumberWillAppend = false;
 }
 
 //Case O4 AND Case 05 (Same behavior / different arguments)
@@ -347,6 +350,7 @@ function equalsLeadsToRepeatedCalculation(x, operator, y) {
   result = calculate(x, operator, y);
   displayCurrentNumber.textContent = result;
   displayCurrentCalculation.textContent = result + operator + y + "=";
+  nextNumberWillAppend = false;
 }
 
 //Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
