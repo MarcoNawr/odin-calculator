@@ -8,6 +8,8 @@ let result = 0;
 let commaAppended = false;
 let nextNumberWillAppend = false;
 let nextNumberWillClearCalculationDisplay = false;
+let isFirstNumberSet = false;
+let isSecondNumberSet = false;
 
 /* #######################################################################
     Selectors
@@ -126,7 +128,8 @@ function clearAll() {
   commaAppended = false;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
-
+  isFirstNumberSet = false;
+  isSecondNumberSet = false;
   displayCurrentCalculation.textContent = "";
   displayCurrentNumber.textContent = "0";
 }
@@ -211,6 +214,8 @@ function operatorClicked(operator) {
     commaAppended = false;
     nextNumberWillAppend = false;
     nextNumberWillClearCalculationDisplay=false;
+    isFirstNumberSet = false;
+    isSecondNumberSet = false;
 
     displayCurrentCalculation.textContent = "";
     displayCurrentNumber.textContent = "0";
@@ -222,22 +227,32 @@ function operatorClicked(operator) {
       operator
   );
 
-  // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
-  // IF
-  //an Operator out of (+-*/=) was clicked
-  //AND <WANN?>
-  //THEN
-  // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
-  combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
-
-  // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
-  // IF
-  // an Operator out of (+-*/) was clicked
-  //AND >WANN?>
-  //THEN
-  // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
-  // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
-  // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
+  if (!isFirstNumberSet) {
+    // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
+    // IF
+    //an Operator out of (+-*/=) was clicked
+    //AND isFirstNumberSet == false
+    //THEN
+    // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
+    // set firstNumber = displayCurrentNumber.textContent
+    // set lastOperator = clicked Operator
+    // set nextNumberWillAppend = false
+    combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+  } else {
+    // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
+    // IF
+    // an Operator out of (+-*/) was clicked
+    //AND >WANN?>
+    //THEN
+    // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
+    // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+    // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
+    operatorLeadsToCalculation(
+      firstNumber,
+      lastOperator,
+      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+    );
+  }
 
   // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
   // IF
@@ -247,11 +262,11 @@ function operatorClicked(operator) {
   // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
   // AND set displayCurrentCalculation to x (firstNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
   // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
-  equalsLeadsToCalculation(
-    firstNumber,
-    lastOperator,
-    displayCurrentNumber.textContent
-  );
+  // equalsLeadsToCalculation(
+  //   firstNumber,
+  //   lastOperator,
+  //   displayCurrentNumber.textContent
+  // );
 
   // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as firstNumber / second number does not change)
   // IF
@@ -297,17 +312,21 @@ function newNumberWithClear(number) {
 ##########################################*/
 //Case O1
 function combineOperatorWithNumber(number, operator) {
-  firstNumber = number;
+  firstNumber = parseFloat(replaceCommaWithDot(number));
+  isFirstNumberSet = true;
   lastOperator = operator;
-  displayCurrentCalculation.textContent = firstNumber + " " + operator;
+  displayCurrentCalculation.textContent =
+    replaceDotWithComma(firstNumber.toString()) + " " + operator;
   nextNumberWillAppend = false;
+  commaAppended = false;
 }
 
 //Case O2
 function operatorLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y);
-  displayCurrentNumber.textContent = result;
-  displayCurrentCalculation.textContent = result + operator;
+  displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
+  displayCurrentCalculation.textContent =
+    replaceDotWithComma(result.toString()) + operator;
 }
 
 //Case O3
@@ -341,9 +360,17 @@ function appendComma() {
 function negate() {
   if (displayCurrentNumber != "0") {
     let negatedNumber =
-      parseFloat(displayCurrentNumber.textContent.replace(",", ".")) * -1;
-    displayCurrentNumber.textContent = negatedNumber
-      .toString()
-      .replace(".", ",");
+      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent)) * -1;
+    displayCurrentNumber.textContent = replaceDotWithComma(
+      negatedNumber.toString()
+    );
   }
+}
+
+function replaceCommaWithDot(wrongFormatString) {
+  return wrongFormatString.replace(",", ".");
+}
+
+function replaceDotWithComma(wrongFormatString) {
+  return wrongFormatString.replace(".", ",");
 }
