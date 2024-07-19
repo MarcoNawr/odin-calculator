@@ -170,6 +170,7 @@ function calculate(a, operator, b) {
     default:
       alert("Something wrong with the operator!");
   }
+  nextNumberWillAppend = false;
   return result;
 }
 
@@ -326,15 +327,19 @@ function combineOperatorWithNumber(number, operator) {
     replaceDotWithComma(firstNumber.toString()) + " " + operator;
   nextNumberWillAppend = false;
   commaAppended = false;
+  nextOperatorLeadsToCalculation = false;
 }
 
 //Case O2
 function operatorLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y);
+  lastOperator = operator;
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
     replaceDotWithComma(result.toString()) + operator;
   nextNumberWillAppend = false;
+  nextNumberWillClearCalculationDisplay = false;
+  nextOperatorLeadsToCalculation = false;
 }
 
 //Case O3
