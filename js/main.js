@@ -10,6 +10,7 @@ let nextNumberWillAppend = false;
 let nextNumberWillClearCalculationDisplay = false;
 let isFirstNumberSet = false;
 let isSecondNumberSet = false;
+let nextOperatorLeadsToCalculation = false;
 
 /* #######################################################################
     Selectors
@@ -130,6 +131,7 @@ function clearAll() {
   nextNumberWillClearCalculationDisplay = false;
   isFirstNumberSet = false;
   isSecondNumberSet = false;
+  nextOperatorLeadsToCalculation = false;
   displayCurrentCalculation.textContent = "";
   displayCurrentNumber.textContent = "0";
 }
@@ -220,38 +222,42 @@ function operatorClicked(operator) {
     displayCurrentCalculation.textContent = "";
     displayCurrentNumber.textContent = "0";
     */
-  alert(
-    "last clicked Operator: " +
-      lastOperator +
-      " --- Current clicked Operator:" +
-      operator
-  );
-
-  if (!isFirstNumberSet) {
-    // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
-    // IF
-    //an Operator out of (+-*/=) was clicked
-    //AND isFirstNumberSet == false
-    //THEN
-    // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
-    // set firstNumber = displayCurrentNumber.textContent
-    // set lastOperator = clicked Operator
-    // set nextNumberWillAppend = false
-    combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
-  } else {
-    // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
-    // IF
-    // an Operator out of (+-*/) was clicked
-    //AND >WANN?>
-    //THEN
-    // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
-    // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
-    // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
-    operatorLeadsToCalculation(
-      firstNumber,
-      lastOperator,
-      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
-    );
+  // alert(
+  //   "last clicked Operator: " +
+  //     lastOperator +
+  //     " --- Current clicked Operator:" +
+  //     operator
+  // );
+  if (operator != "=") {
+    if (!isFirstNumberSet) {
+      // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
+      // IF
+      //an Operator out of (+-*/=) was clicked
+      //AND currentOperator != "="
+      //AND isFirstNumberSet == false
+      // AND <WaNN?>
+      //THEN
+      // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
+      // set firstNumber = displayCurrentNumber.textContent
+      // set lastOperator = clicked Operator
+      // set nextNumberWillAppend = false
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+    } else {
+      // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
+      // IF
+      // an Operator out of (+-*/) was clicked
+      //AND currentOperator != "="
+      //AND <WANN?>
+      //THEN
+      // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
+      // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+      // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
+      operatorLeadsToCalculation(
+        firstNumber,
+        lastOperator,
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+      );
+    }
   }
 
   // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
