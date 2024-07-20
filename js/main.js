@@ -5,12 +5,11 @@ let firstNumber = 0;
 let lastOperator = "";
 let secondNumber = 0;
 let result = 0;
-let commaAppended = false;
 let nextNumberWillAppend = false;
 let nextNumberWillClearCalculationDisplay = false;
 let isFirstNumberSet = false;
 let isSecondNumberSet = false;
-let nextOperatorLeadsToCalculation = false;
+let nextOperatorLeadsToCalculation = true;
 
 /* #######################################################################
     Selectors
@@ -89,7 +88,7 @@ btn0.addEventListener("click", () => {
 });
 
 btnComma.addEventListener("click", () => {
-  appendComma();
+  appendComma(displayCurrentNumber.textContent);
 });
 
 btnNegate.addEventListener("click", () => {
@@ -126,12 +125,11 @@ function clearAll() {
   lastOperator = "";
   secondNumber = 0;
   result = 0;
-  commaAppended = false;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
   isFirstNumberSet = false;
   isSecondNumberSet = false;
-  nextOperatorLeadsToCalculation = false;
+  nextOperatorLeadsToCalculation = true;
   displayCurrentCalculation.textContent = "";
   displayCurrentNumber.textContent = "0";
 }
@@ -175,19 +173,6 @@ function calculate(a, operator, b) {
 }
 
 function numberClicked(number) {
-  /*
-    firstNumber = 0;
-    lastOperator = "";
-    secondNumber = 0;
-    result = 0;
-    commaAppended = false;
-    nextNumberWillAppend = false;
-    nextNumberWillClearCalculationDisplay=false;
-
-    displayCurrentCalculation.textContent = "";
-    displayCurrentNumber.textContent = "0";
-    */
-
   if (!nextNumberWillAppend && nextNumberWillClearCalculationDisplay) {
     // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
     // IF a Number was clicked
@@ -209,26 +194,6 @@ function numberClicked(number) {
 }
 
 function operatorClicked(operator) {
-  /*
-    firstNumber = 0;
-    lastOperator = "";
-    secondNumber = 0;
-    result = 0;
-    commaAppended = false;
-    nextNumberWillAppend = false;
-    nextNumberWillClearCalculationDisplay=false;
-    isFirstNumberSet = false;
-    isSecondNumberSet = false;
-
-    displayCurrentCalculation.textContent = "";
-    displayCurrentNumber.textContent = "0";
-    */
-  // alert(
-  //   "last clicked Operator: " +
-  //     lastOperator +
-  //     " --- Current clicked Operator:" +
-  //     operator
-  // );
   if (operator != "=") {
     if (!isFirstNumberSet) {
       // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
@@ -236,19 +201,19 @@ function operatorClicked(operator) {
       //an Operator out of (+-*/=) was clicked
       //AND currentOperator != "="
       //AND isFirstNumberSet == false
-      // AND <WaNN?>
       //THEN
       // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
       // set firstNumber = displayCurrentNumber.textContent
       // set lastOperator = clicked Operator
       // set nextNumberWillAppend = false
       combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
-    } else {
+    } else if (isFirstNumberSet && nextOperatorLeadsToCalculation) {
       // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
       // IF
       // an Operator out of (+-*/) was clicked
       //AND currentOperator != "="
-      //AND <WANN?>
+      //AND nextOperatorLeadsToCalculation
+      //And isFirstNumberSet == true
       //THEN
       // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
       // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
@@ -326,8 +291,6 @@ function combineOperatorWithNumber(number, operator) {
   displayCurrentCalculation.textContent =
     replaceDotWithComma(firstNumber.toString()) + " " + operator;
   nextNumberWillAppend = false;
-  commaAppended = false;
-  nextOperatorLeadsToCalculation = false;
 }
 
 //Case O2
@@ -359,13 +322,11 @@ function equalsLeadsToRepeatedCalculation(x, operator, y) {
 }
 
 //Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
-// IF the Operator , was clicked AND commaAppended = false THEN
+// IF the Operator , was clicked AND no comma set so far THEN
 // Append , to displayCurrentNumber
-// AND don't allow another ,
-function appendComma() {
-  if (!commaAppended) {
+function appendComma(number) {
+  if (!number.includes(",")) {
     displayCurrentNumber.textContent += ",";
-    commaAppended = true;
   }
 }
 
