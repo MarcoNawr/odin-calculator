@@ -168,7 +168,7 @@ function calculate(a, operator, b) {
       result = divide(a, b);
       break;
     default:
-      alert("Something wrong with the operator!");
+      alert("Something wrong with the operator!"); // FIXME: kommt vor bei 2=3-1* ==> es muss verhindert werden, dass hier mit = gerechnet wird. Bei dem Minus sollte combineOperatorWithNumber aufgerufen werden und nicht wie gerade operatorLeadsToCalculation
   }
   nextNumberWillAppend = false;
   return result;
@@ -315,7 +315,7 @@ function equalsLeadsToCalculation(x, operator, y) {
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = true;
-  nextOperatorLeadsToCalculation = true;
+  nextOperatorLeadsToCalculation = true; //FIXME: hier ist manchmal true und manchmal false richtig: false richtig für 2+3=1(*) / true richtig für 2+3=1=6= ==> Tendenz lieber true nutzen und den andern Fall anders abfangen
   savedNumberIsSet = false;
 }
 
