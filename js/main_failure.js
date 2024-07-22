@@ -1,14 +1,15 @@
 /* #######################################################################
     Variables
 #######################################################################*/
-let savedNumber = 0;
+let firstNumber = 0;
 let lastOperator = "";
+let secondNumber = 0;
 let result = 0;
-
 let nextNumberWillAppend = false;
-let savedNumberIsSet = false;
-let nextOperatorLeadsToCalculation = false;
 let nextNumberWillClearCalculationDisplay = false;
+let isFirstNumberSet = false;
+let isSecondNumberSet = false;
+let nextOperatorLeadsToCalculation = true;
 
 /* #######################################################################
     Selectors
@@ -38,11 +39,8 @@ let btnAdd = document.querySelector("#btnAdd");
 let btnResult = document.querySelector("#btnResult");
 
 /* #######################################################################
-      EventListener
-  #######################################################################*/
-//TODO: Do this with a function not separate for each button
-//FIXME: Do this with a function not separate for each button
-
+    EventListener
+#######################################################################*/
 btnClear.addEventListener("click", clearAll);
 
 btnBackspace.addEventListener("click", () => {
@@ -117,19 +115,21 @@ btnResult.addEventListener("click", () => {
   operatorClicked(btnResult.textContent);
 });
 
+//TODO: Nice Highlighted Comment
+//FIXME: Nice Highlighted Comment
 /* #######################################################################
-      Function Declaration
-  #######################################################################*/
+    Function Declaration
+#######################################################################*/
 function clearAll() {
-  savedNumber = 0;
+  firstNumber = 0;
   lastOperator = "";
+  secondNumber = 0;
   result = 0;
-
   nextNumberWillAppend = false;
-  savedNumberIsSet = false;
-  nextOperatorLeadsToCalculation = false;
   nextNumberWillClearCalculationDisplay = false;
-
+  isFirstNumberSet = false;
+  isSecondNumberSet = false;
+  nextOperatorLeadsToCalculation = true;
   displayCurrentCalculation.textContent = "";
   displayCurrentNumber.textContent = "0";
 }
@@ -173,10 +173,6 @@ function calculate(a, operator, b) {
 }
 
 function numberClicked(number) {
-  if (savedNumberIsSet) {
-    nextOperatorLeadsToCalculation = true;
-  }
-
   if (!nextNumberWillAppend && nextNumberWillClearCalculationDisplay) {
     // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
     // IF a Number was clicked
@@ -195,6 +191,72 @@ function numberClicked(number) {
     // IF a Number was clicked AND nextNumberWillAppend = true THEN append clicked Number to the currently displayed Number within displayCurrentNumber
     appendNumber(number);
   }
+}
+
+function operatorClicked(operator) {
+  if (operator != "=") {
+    if (!isFirstNumberSet) {
+      // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
+      // IF
+      //an Operator out of (+-*/=) was clicked
+      //AND currentOperator != "="
+      //AND isFirstNumberSet == false
+      //THEN
+      // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
+      // set firstNumber = displayCurrentNumber.textContent
+      // set lastOperator = clicked Operator
+      // set nextNumberWillAppend = false
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+    } else if (isFirstNumberSet && nextOperatorLeadsToCalculation) {
+      // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
+      // IF
+      // an Operator out of (+-*/) was clicked
+      //AND currentOperator != "="
+      //AND nextOperatorLeadsToCalculation
+      //And isFirstNumberSet == true
+      //THEN
+      // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
+      // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+      // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
+      operatorLeadsToCalculation(
+        firstNumber,
+        lastOperator,
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+      );
+    }
+  }
+
+  // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
+  // IF
+  //the Operator = was clicked
+  //AND <WANN?>...
+  //THEN
+  // calculate x (firstNumber) operator (last clicked Operator) y (displayCurrentNumber)
+  // AND set displayCurrentCalculation to x (firstNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
+  // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+  // equalsLeadsToCalculation(
+  //   firstNumber,
+  //   lastOperator,
+  //   displayCurrentNumber.textContent
+  // );
+
+  // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as firstNumber / second number does not change)
+  // IF
+  //the Operator = was clicked
+  //AND <WANN?
+  //THEN
+  // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber)
+  // AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
+  // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
+
+  // Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as firstNumber / second number does not change)
+  // IF
+  // the Operator = was clicked
+  // AND <WANN?>
+  // THEN
+  // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber from Last Calculation)
+  // AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
+  // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
 }
 
 /* ########################################
@@ -216,97 +278,18 @@ function newNumberWithClear(number) {
   displayCurrentNumber.textContent = number;
   displayCurrentCalculation.textContent = "";
   nextNumberWillAppend = true;
-  nextNumberWillClearCalculationDisplay = false;
 }
-
-function operatorClicked(operator) {
-  if (operator != "=") {
-    if (!nextOperatorLeadsToCalculation) {
-      // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
-      // IF
-      //an Operator out of (+-*/=) was clicked
-      //AND currentOperator != "="
-      //AND nextOperatorLeadsToCalculation == false
-      //THEN
-      // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
-      // set savedNumber = displayCurrentNumber.textContent
-      // set lastOperator = clicked Operator
-      // set nextNumberWillAppend = false
-      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
-    } else if (savedNumberIsSet && nextOperatorLeadsToCalculation) {
-      // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
-      // IF
-      // an Operator out of (+-*/) was clicked
-      //AND currentOperator != "="
-      //AND nextOperatorLeadsToCalculation
-      //And savedNumberIsSet == true
-      //THEN
-      // calculate x (savedNumber) operator (last clicked Operator) y (displayCurrentNumber)
-      // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
-      // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
-      operatorLeadsToCalculation(
-        savedNumber,
-        lastOperator,
-        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
-      );
-    }
-  } else {
-    // Operator = "="
-    // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
-    equalsLeadsToCalculation(
-      savedNumber,
-      lastOperator,
-      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
-    );
-    // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as savedNumber / second number does not change)
-    // Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as savedNumber / second number does not change)
-  }
-}
-
-// Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
-// IF
-//the Operator = was clicked
-//AND <WANN?>...
-//THEN
-// calculate x (savedNumber) operator (last clicked Operator) y (displayCurrentNumber)
-// AND set displayCurrentCalculation to x (savedNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
-// AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
-// equalsLeadsToCalculation(
-//   savedNumber,
-//   lastOperator,
-//   displayCurrentNumber.textContent
-// );
-
-// Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as savedNumber / second number does not change)
-// IF
-//the Operator = was clicked
-//AND <WANN?
-//THEN
-// calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber)
-// AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
-// AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
-
-// Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as savedNumber / second number does not change)
-// IF
-// the Operator = was clicked
-// AND <WANN?>
-// THEN
-// calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber from Last Calculation)
-// AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
-// AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
 
 /* ########################################
     Function Declaration for Operators
 ##########################################*/
-//TODO: Solve Floating Problem: Solution here https://stackoverflow.com/questions/10473994/javascript-adding-decimal-numbers-issue
-
 //Case O1
 function combineOperatorWithNumber(number, operator) {
-  savedNumber = parseFloat(replaceCommaWithDot(number));
-  savedNumberIsSet = true;
+  firstNumber = parseFloat(replaceCommaWithDot(number));
+  isFirstNumberSet = true;
   lastOperator = operator;
   displayCurrentCalculation.textContent =
-    replaceDotWithComma(savedNumber.toString()) + " " + operator;
+    replaceDotWithComma(firstNumber.toString()) + " " + operator;
   nextNumberWillAppend = false;
 }
 
@@ -316,7 +299,7 @@ function operatorLeadsToCalculation(x, operator, y) {
   lastOperator = operator;
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
-    replaceDotWithComma(result.toString()) + " " + operator;
+    replaceDotWithComma(result.toString()) + operator;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
   nextOperatorLeadsToCalculation = false;
@@ -325,19 +308,9 @@ function operatorLeadsToCalculation(x, operator, y) {
 //Case O3
 function equalsLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y);
-  displayCurrentCalculation.textContent =
-    replaceDotWithComma(x.toString()) +
-    " " +
-    operator +
-    " " +
-    replaceDotWithComma(y.toString()) +
-    " " +
-    "=";
-  displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
+  displayCurrentCalculation.textContent = x + operator + y + "=";
+  displayCurrentNumber.textContent = result;
   nextNumberWillAppend = false;
-  nextNumberWillClearCalculationDisplay = true;
-  nextOperatorLeadsToCalculation = false;
-  savedNumberIsSet = false;
 }
 
 //Case O4 AND Case 05 (Same behavior / different arguments)
@@ -369,10 +342,6 @@ function negate() {
     );
   }
 }
-
-/* ########################################
-    Function Declaration for Basics
-##########################################*/
 
 function replaceCommaWithDot(wrongFormatString) {
   return wrongFormatString.replace(",", ".");
