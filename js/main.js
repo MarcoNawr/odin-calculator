@@ -9,6 +9,7 @@ let nextNumberWillAppend = false;
 let savedNumberIsSet = false;
 let nextOperatorLeadsToCalculation = false;
 let nextNumberWillClearCalculationDisplay = false;
+let isFirstResult = true;
 
 /* #######################################################################
     Selectors
@@ -129,6 +130,7 @@ function clearAll() {
   savedNumberIsSet = false;
   nextOperatorLeadsToCalculation = false;
   nextNumberWillClearCalculationDisplay = false;
+  isFirstResult = true;
 
   displayCurrentCalculation.textContent = "";
   displayCurrentNumber.textContent = "0";
@@ -239,8 +241,6 @@ function operatorClicked(operator) {
 /* ########################################
     Function Declaration for Operators
 ##########################################*/
-//TODO: (Done) Solve Floating Problem: Solution here https://stackoverflow.com/questions/10473994/javascript-adding-decimal-numbers-issue
-
 //Case O1
 function combineOperatorWithNumber(number, operator) {
   savedNumber = parseFloat(replaceCommaWithDot(number));
@@ -251,11 +251,11 @@ function combineOperatorWithNumber(number, operator) {
   nextNumberWillAppend = false;
 }
 
-//FIXME: Case O2 und Case 03 Repeated calculations should use the second number and the result. Currently the first number and the result is used
+//Case O2
 function operatorLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y).toFixed(3);
   if (result == "Infinity") {
-    alert("Error: Division by zero");
+    alert("Nice try Dude. Start again");
     clearAll();
     return;
   }
@@ -263,27 +263,49 @@ function operatorLeadsToCalculation(x, operator, y) {
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
     replaceDotWithComma(result.toString()) + " " + operator;
+  savedNumber = result;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
   nextOperatorLeadsToCalculation = false;
 }
 
 //Case O3
+//FIXME: Case 03 Repeated calculations should use the second number and the result. Currently the first number and the result is used
 function equalsLeadsToCalculation(x, operator, y) {
-  result = calculate(x, operator, y).toFixed(3);
+  // x == savedNumber , operator == lastOperator, y == currentNumber
+  if (isFirstResult) {
+    result = calculate(x, operator, y).toFixed(3);
+  } else {
+    result = calculate(y, operator, x).toFixed(3);
+  }
+
   if (result == "Infinity") {
-    alert("Error: Division by zero");
+    alert("Nice try Dude. Start again");
     clearAll();
     return;
   }
-  displayCurrentCalculation.textContent =
-    replaceDotWithComma(x.toString()) +
-    " " +
-    operator +
-    " " +
-    replaceDotWithComma(y.toString()) +
-    " " +
-    "=";
+
+  if (isFirstResult) {
+    displayCurrentCalculation.textContent =
+      replaceDotWithComma(x.toString()) +
+      " " +
+      operator +
+      " " +
+      replaceDotWithComma(y.toString()) +
+      " " +
+      "=";
+    isFirstResult = false;
+    savedNumber = y;
+  } else {
+    displayCurrentCalculation.textContent =
+      replaceDotWithComma(y.toString()) +
+      " " +
+      operator +
+      " " +
+      replaceDotWithComma(x.toString()) +
+      " " +
+      "=";
+  }
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = true;
