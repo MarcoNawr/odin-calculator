@@ -251,7 +251,7 @@ function combineOperatorWithNumber(number, operator) {
   nextNumberWillAppend = false;
 }
 
-//Case O2
+//FIXME: Case O2 und Case 03 Repeated calculations should use the second number and the result. Currently the first number and the result is used
 function operatorLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y).toFixed(3);
   if (result == "Infinity") {
