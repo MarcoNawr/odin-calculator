@@ -216,6 +216,7 @@ function newNumberWithClear(number) {
   displayCurrentNumber.textContent = number;
   displayCurrentCalculation.textContent = "";
   nextNumberWillAppend = true;
+  nextNumberWillClearCalculationDisplay = false;
 }
 
 function operatorClicked(operator) {
@@ -249,40 +250,50 @@ function operatorClicked(operator) {
         parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
       );
     }
+  } else {
+    // Operator = "="
+    // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
+    equalsLeadsToCalculation(
+      savedNumber,
+      lastOperator,
+      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+    );
+    // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as savedNumber / second number does not change)
+    // Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as savedNumber / second number does not change)
   }
-
-  // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
-  // IF
-  //the Operator = was clicked
-  //AND <WANN?>...
-  //THEN
-  // calculate x (savedNumber) operator (last clicked Operator) y (displayCurrentNumber)
-  // AND set displayCurrentCalculation to x (savedNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
-  // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
-  // equalsLeadsToCalculation(
-  //   savedNumber,
-  //   lastOperator,
-  //   displayCurrentNumber.textContent
-  // );
-
-  // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as savedNumber / second number does not change)
-  // IF
-  //the Operator = was clicked
-  //AND <WANN?
-  //THEN
-  // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber)
-  // AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
-  // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
-
-  // Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as savedNumber / second number does not change)
-  // IF
-  // the Operator = was clicked
-  // AND <WANN?>
-  // THEN
-  // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber from Last Calculation)
-  // AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
-  // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
 }
+
+// Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
+// IF
+//the Operator = was clicked
+//AND <WANN?>...
+//THEN
+// calculate x (savedNumber) operator (last clicked Operator) y (displayCurrentNumber)
+// AND set displayCurrentCalculation to x (savedNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
+// AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+// equalsLeadsToCalculation(
+//   savedNumber,
+//   lastOperator,
+//   displayCurrentNumber.textContent
+// );
+
+// Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as savedNumber / second number does not change)
+// IF
+//the Operator = was clicked
+//AND <WANN?
+//THEN
+// calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber)
+// AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
+// AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
+
+// Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as savedNumber / second number does not change)
+// IF
+// the Operator = was clicked
+// AND <WANN?>
+// THEN
+// calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber from Last Calculation)
+// AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
+// AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
 
 /* ########################################
     Function Declaration for Operators
@@ -303,7 +314,7 @@ function operatorLeadsToCalculation(x, operator, y) {
   lastOperator = operator;
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
-    replaceDotWithComma(result.toString()) + operator;
+    replaceDotWithComma(result.toString()) + " " + operator;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
   nextOperatorLeadsToCalculation = false;
@@ -315,6 +326,9 @@ function equalsLeadsToCalculation(x, operator, y) {
   displayCurrentCalculation.textContent = x + operator + y + "=";
   displayCurrentNumber.textContent = result;
   nextNumberWillAppend = false;
+  nextNumberWillClearCalculationDisplay = true;
+  nextOperatorLeadsToCalculation = false;
+  savedNumberIsSet = false;
 }
 
 //Case O4 AND Case 05 (Same behavior / different arguments)
