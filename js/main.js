@@ -200,7 +200,9 @@ function newNumber(number) {
 
 //Case N2
 function appendNumber(number) {
-  displayCurrentNumber.textContent += number;
+  if (displayCurrentNumber.textContent.length <= 14) {
+    displayCurrentNumber.textContent += number;
+  }
 }
 
 //Case N3
@@ -252,6 +254,11 @@ function combineOperatorWithNumber(number, operator) {
 //Case O2
 function operatorLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y).toFixed(3);
+  if (result == "Infinity") {
+    alert("Error: Division by zero");
+    clearAll();
+    return;
+  }
   lastOperator = operator;
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
@@ -264,6 +271,11 @@ function operatorLeadsToCalculation(x, operator, y) {
 //Case O3
 function equalsLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y).toFixed(3);
+  if (result == "Infinity") {
+    alert("Error: Division by zero");
+    clearAll();
+    return;
+  }
   displayCurrentCalculation.textContent =
     replaceDotWithComma(x.toString()) +
     " " +
