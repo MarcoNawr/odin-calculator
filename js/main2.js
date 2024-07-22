@@ -7,7 +7,7 @@ let result = 0;
 
 let nextNumberWillAppend = false;
 let savedNumberIsSet = false;
-let nextOperatorLeadsToCalculation = true;
+let nextOperatorLeadsToCalculation = false;
 let nextNumberWillClearCalculationDisplay = false;
 
 /* #######################################################################
@@ -127,7 +127,7 @@ function clearAll() {
 
   nextNumberWillAppend = false;
   savedNumberIsSet = false;
-  nextOperatorLeadsToCalculation = true;
+  nextOperatorLeadsToCalculation = false;
   nextNumberWillClearCalculationDisplay = false;
 
   displayCurrentCalculation.textContent = "";
@@ -173,6 +173,10 @@ function calculate(a, operator, b) {
 }
 
 function numberClicked(number) {
+  if (savedNumberIsSet) {
+    nextOperatorLeadsToCalculation = true;
+  }
+
   if (!nextNumberWillAppend && nextNumberWillClearCalculationDisplay) {
     // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
     // IF a Number was clicked
@@ -212,4 +216,145 @@ function newNumberWithClear(number) {
   displayCurrentNumber.textContent = number;
   displayCurrentCalculation.textContent = "";
   nextNumberWillAppend = true;
+}
+
+function operatorClicked(operator) {
+  if (operator != "=") {
+    if (!nextOperatorLeadsToCalculation) {
+      // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
+      // IF
+      //an Operator out of (+-*/=) was clicked
+      //AND currentOperator != "="
+      //AND nextOperatorLeadsToCalculation == false
+      //THEN
+      // set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. "2+" OR "2=")
+      // set savedNumber = displayCurrentNumber.textContent
+      // set lastOperator = clicked Operator
+      // set nextNumberWillAppend = false
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+    } else if (savedNumberIsSet && nextOperatorLeadsToCalculation) {
+      // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
+      // IF
+      // an Operator out of (+-*/) was clicked
+      //AND currentOperator != "="
+      //AND nextOperatorLeadsToCalculation
+      //And savedNumberIsSet == true
+      //THEN
+      // calculate x (savedNumber) operator (last clicked Operator) y (displayCurrentNumber)
+      // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+      // AND set displayCurrentCalculation to displayCurrentNumber and clicked Operator (e.g. After 2+3 = 5 "5+")
+      operatorLeadsToCalculation(
+        savedNumber,
+        lastOperator,
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+      );
+    }
+  }
+
+  // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
+  // IF
+  //the Operator = was clicked
+  //AND <WANN?>...
+  //THEN
+  // calculate x (savedNumber) operator (last clicked Operator) y (displayCurrentNumber)
+  // AND set displayCurrentCalculation to x (savedNumber) operator (last clicked Operator) y(displayCurrentNumber/(Or secondNumber/last clicked Number)) and = (e.g. After 2+3 = 5 "2+3=")
+  // AND display the result within displayCurrentNumber (e.g. After 2+3 = 5 "5")
+  // equalsLeadsToCalculation(
+  //   savedNumber,
+  //   lastOperator,
+  //   displayCurrentNumber.textContent
+  // );
+
+  // Case 4 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with last Result as savedNumber / second number does not change)
+  // IF
+  //the Operator = was clicked
+  //AND <WANN?
+  //THEN
+  // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber)
+  // AND display the result within displayCurrentNumber (e.g. After 2+3=5=8=11=14=17 "17")
+  // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=5=8=11=14=17 "14+3=")
+
+  // Case 5 (=) ==> OPERATOR = LEADS TO REPEATED CALCULATION (with current display / last clicked Number as savedNumber / second number does not change)
+  // IF
+  // the Operator = was clicked
+  // AND <WANN?>
+  // THEN
+  // calculate x (displayCurrentNumber) operator (last clicked Operator) y (secondNumber from Last Calculation)
+  // AND display the result within displayCurrentNumber (e.g. After 2+3=1= "4")
+  // AND set displayCurrentCalculation to x(result) operator (last clicked Operator) y(secondNumber) and = (e.g. After 2+3=1= "1+3=")
+}
+
+/* ########################################
+    Function Declaration for Operators
+##########################################*/
+//Case O1
+function combineOperatorWithNumber(number, operator) {
+  savedNumber = parseFloat(replaceCommaWithDot(number));
+  savedNumberIsSet = true;
+  lastOperator = operator;
+  displayCurrentCalculation.textContent =
+    replaceDotWithComma(savedNumber.toString()) + " " + operator;
+  nextNumberWillAppend = false;
+}
+
+//Case O2
+function operatorLeadsToCalculation(x, operator, y) {
+  result = calculate(x, operator, y);
+  lastOperator = operator;
+  displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
+  displayCurrentCalculation.textContent =
+    replaceDotWithComma(result.toString()) + operator;
+  nextNumberWillAppend = false;
+  nextNumberWillClearCalculationDisplay = false;
+  nextOperatorLeadsToCalculation = false;
+}
+
+//Case O3
+function equalsLeadsToCalculation(x, operator, y) {
+  result = calculate(x, operator, y);
+  displayCurrentCalculation.textContent = x + operator + y + "=";
+  displayCurrentNumber.textContent = result;
+  nextNumberWillAppend = false;
+}
+
+//Case O4 AND Case 05 (Same behavior / different arguments)
+function equalsLeadsToRepeatedCalculation(x, operator, y) {
+  result = calculate(x, operator, y);
+  displayCurrentNumber.textContent = result;
+  displayCurrentCalculation.textContent = result + operator + y + "=";
+  nextNumberWillAppend = false;
+}
+
+//Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
+// IF the Operator , was clicked AND no comma set so far THEN
+// Append , to displayCurrentNumber
+function appendComma(number) {
+  if (!number.includes(",")) {
+    displayCurrentNumber.textContent += ",";
+  }
+}
+
+//Case 7 (NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
+// IF the Operator NEGATE was clicked AND displayCurrentNumber!=0 THEN
+// negate displayCurrentNumber
+function negate() {
+  if (displayCurrentNumber != "0") {
+    let negatedNumber =
+      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent)) * -1;
+    displayCurrentNumber.textContent = replaceDotWithComma(
+      negatedNumber.toString()
+    );
+  }
+}
+
+/* ########################################
+    Function Declaration for Basics
+##########################################*/
+
+function replaceCommaWithDot(wrongFormatString) {
+  return wrongFormatString.replace(",", ".");
+}
+
+function replaceDotWithComma(wrongFormatString) {
+  return wrongFormatString.replace(".", ",");
 }
