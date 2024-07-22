@@ -132,7 +132,7 @@ function clearAll() {
   nextNumberWillClearCalculationDisplay = false;
   isFirstResult = true;
 
-  displayCurrentCalculation.textContent = "";
+  displayCurrentCalculation.textContent = "empty";
   displayCurrentNumber.textContent = "0";
 }
 
@@ -210,7 +210,7 @@ function appendNumber(number) {
 //Case N3
 function newNumberWithClear(number) {
   displayCurrentNumber.textContent = number;
-  displayCurrentCalculation.textContent = "";
+  displayCurrentCalculation.textContent = "empty";
   nextNumberWillAppend = true;
   nextNumberWillClearCalculationDisplay = false;
 }
@@ -225,16 +225,22 @@ function operatorClicked(operator) {
       operatorLeadsToCalculation(
         savedNumber,
         lastOperator,
-        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent)),
+        operator
       );
     }
   } else {
     // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
-    equalsLeadsToCalculation(
-      savedNumber,
-      lastOperator,
-      parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
-    );
+    if (!nextOperatorLeadsToCalculation) {
+      // Case 1 (+-*/=) ==> ONE NUMBER AND OPERATOR
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+    } else {
+      equalsLeadsToCalculation(
+        savedNumber,
+        lastOperator,
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+      );
+    }
   }
 }
 
@@ -252,17 +258,17 @@ function combineOperatorWithNumber(number, operator) {
 }
 
 //Case O2
-function operatorLeadsToCalculation(x, operator, y) {
+function operatorLeadsToCalculation(x, operator, y, nextOperator) {
   result = calculate(x, operator, y).toFixed(3);
   if (result == "Infinity") {
     alert("Nice try Dude. Start again");
     clearAll();
     return;
   }
-  lastOperator = operator;
+  lastOperator = nextOperator;
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
-    replaceDotWithComma(result.toString()) + " " + operator;
+    replaceDotWithComma(result.toString()) + " " + nextOperator;
   savedNumber = result;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
@@ -309,7 +315,7 @@ function equalsLeadsToCalculation(x, operator, y) {
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = true;
-  nextOperatorLeadsToCalculation = false;
+  nextOperatorLeadsToCalculation = true;
   savedNumberIsSet = false;
 }
 
