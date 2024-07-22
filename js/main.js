@@ -46,7 +46,7 @@ let btnResult = document.querySelector("#btnResult");
 btnClear.addEventListener("click", clearAll);
 
 btnBackspace.addEventListener("click", () => {
-  alert("btnBackspace was clicked");
+  backspaceClicked();
 });
 
 btn1.addEventListener("click", () => {
@@ -310,6 +310,16 @@ function negate() {
     displayCurrentNumber.textContent = replaceDotWithComma(
       negatedNumber.toString()
     );
+  }
+}
+
+function backspaceClicked() {
+  if (displayCurrentNumber.textContent.length > 1) {
+    let newString = displayCurrentNumber.textContent.slice(0, -1);
+    displayCurrentNumber.textContent = newString;
+  } else {
+    displayCurrentNumber.textContent = "0";
+    nextNumberWillAppend = false;
   }
 }
 
