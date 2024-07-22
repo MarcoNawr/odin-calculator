@@ -298,6 +298,8 @@ function operatorClicked(operator) {
 /* ########################################
     Function Declaration for Operators
 ##########################################*/
+//TODO: Solve Floating Problem: Solution here https://stackoverflow.com/questions/10473994/javascript-adding-decimal-numbers-issue
+
 //Case O1
 function combineOperatorWithNumber(number, operator) {
   savedNumber = parseFloat(replaceCommaWithDot(number));
@@ -323,8 +325,15 @@ function operatorLeadsToCalculation(x, operator, y) {
 //Case O3
 function equalsLeadsToCalculation(x, operator, y) {
   result = calculate(x, operator, y);
-  displayCurrentCalculation.textContent = x + operator + y + "=";
-  displayCurrentNumber.textContent = result;
+  displayCurrentCalculation.textContent =
+    replaceDotWithComma(x.toString()) +
+    " " +
+    operator +
+    " " +
+    replaceDotWithComma(y.toString()) +
+    " " +
+    "=";
+  displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = true;
   nextOperatorLeadsToCalculation = false;
