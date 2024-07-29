@@ -168,13 +168,17 @@ function calculate(a, operator, b) {
       result = divide(a, b);
       break;
     default:
-      alert("Something wrong with the operator!");
+      alert("Something wrong with the operator!"); // FIXME: kommt vor bei 2=3-1* ==> es muss verhindert werden, dass hier mit = gerechnet wird. Bei dem Minus sollte combineOperatorWithNumber aufgerufen werden und nicht wie gerade operatorLeadsToCalculation
   }
   nextNumberWillAppend = false;
   return result;
 }
 
 function numberClicked(number) {
+  if (savedNumberIsSet) {
+    nextOperatorLeadsToCalculation = true;
+  }
+
   if (!nextNumberWillAppend && nextNumberWillClearCalculationDisplay) {
     // Case 3 ==> NEW NUMBER AND CLEAR DISPLAY OF CURRENT CALCULATION
     newNumberWithClear(number);
@@ -194,9 +198,6 @@ function numberClicked(number) {
 function newNumber(number) {
   displayCurrentNumber.textContent = number;
   nextNumberWillAppend = true;
-  if (savedNumberIsSet) {
-    nextOperatorLeadsToCalculation = true;
-  }
 }
 
 //Case N2
@@ -212,30 +213,33 @@ function newNumberWithClear(number) {
   displayCurrentCalculation.textContent = "empty";
   nextNumberWillAppend = true;
   nextNumberWillClearCalculationDisplay = false;
-  nextOperatorLeadsToCalculation = false;
 }
 
 function operatorClicked(operator) {
-  if (!nextOperatorLeadsToCalculation) {
-    combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+  if (operator != "=") {
+    if (!nextOperatorLeadsToCalculation || lastOperator == "=") {
+      // Case 1 (+-*/) ==> ONE NUMBER AND OPERATOR
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
+    } else if (savedNumberIsSet && nextOperatorLeadsToCalculation) {
+      // Case 2 (+-*/) ==> OPERATOR LIKE +-*/ LEADS TO CALCULATION - (Order matters)
+      operatorLeadsToCalculation(
+        savedNumber,
+        lastOperator,
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent)),
+        operator
+      );
+    }
   } else {
-    if (lastOperator == "=") {
-      alert("last Operator was = !");
+    // Case 3 (=) ==> OPERATOR = LEADS TO CALCULATION - (Order matters)
+    if (!nextOperatorLeadsToCalculation) {
+      // Case 1 (=) ==> ONE NUMBER AND OPERATOR
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
     } else {
-      if (operator == "=") {
-        equalsLeadsToCalculation(
-          savedNumber,
-          lastOperator,
-          parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
-        );
-      } else {
-        operatorLeadsToCalculation(
-          savedNumber,
-          lastOperator,
-          parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent)),
-          operator
-        );
-      }
+      equalsLeadsToCalculation(
+        savedNumber,
+        lastOperator,
+        parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+      );
     }
   }
 }
@@ -252,7 +256,6 @@ function combineOperatorWithNumber(number, operator) {
   displayCurrentCalculation.textContent =
     replaceDotWithComma(savedNumber.toString()) + " " + operator;
   nextNumberWillAppend = false;
-  nextNumberWillClearCalculationDisplay = false;
 }
 
 //Case O2
@@ -267,12 +270,14 @@ function operatorLeadsToCalculation(x, operator, y, nextOperator) {
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   displayCurrentCalculation.textContent =
     replaceDotWithComma(result.toString()) + " " + nextOperator;
+  savedNumber = result;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
   nextOperatorLeadsToCalculation = false;
 }
 
 //Case O3
+//FIXME: Case 03 Repeated calculations should use the second number and the result. Currently the first number and the result is used
 function equalsLeadsToCalculation(x, operator, y) {
   // x == savedNumber , operator == lastOperator, y == currentNumber
   if (isFirstResult) {
@@ -311,7 +316,8 @@ function equalsLeadsToCalculation(x, operator, y) {
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = true;
-  nextOperatorLeadsToCalculation = false;
+  nextOperatorLeadsToCalculation = true; //FIXME: hier ist manchmal true und manchmal false richtig: false richtig für 2+3=1(*) / true richtig für 2+3=1=6= ==> Tendenz lieber true nutzen und den andern Fall anders abfangen
+  savedNumberIsSet = false;
 }
 
 //Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
