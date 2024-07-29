@@ -1,12 +1,14 @@
 /* #######################################################################
     Variables
 #######################################################################*/
-let savedNumber = 0;
+let firstNumber = 0;
+let secondNumber = 0;
 let lastOperator = "";
 let result = 0;
 
 let nextNumberWillAppend = false;
-let savedNumberIsSet = false;
+let firstNumberIsSet = false;
+let secondNumberIsSet = false;
 let nextOperatorLeadsToCalculation = false;
 let nextNumberWillClearCalculationDisplay = false;
 let isFirstResult = true;
@@ -122,12 +124,14 @@ btnResult.addEventListener("click", () => {
       Function Declaration
   #######################################################################*/
 function clearAll() {
-  savedNumber = 0;
+  firstNumber = 0;
+  secondNumber = 0;
   lastOperator = "";
   result = 0;
 
   nextNumberWillAppend = false;
-  savedNumberIsSet = false;
+  firstNumberIsSet = false;
+  secondNumberIsSet = false;
   nextOperatorLeadsToCalculation = false;
   nextNumberWillClearCalculationDisplay = false;
   isFirstResult = true;
@@ -194,7 +198,7 @@ function numberClicked(number) {
 function newNumber(number) {
   displayCurrentNumber.textContent = number;
   nextNumberWillAppend = true;
-  if (savedNumberIsSet) {
+  if (firstNumberIsSet) {
     nextOperatorLeadsToCalculation = true;
   }
 }
@@ -220,19 +224,21 @@ function operatorClicked(operator) {
     combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
   } else {
     if (lastOperator == "=") {
-      alert("last Operator was = !");
+      combineOperatorWithNumber(displayCurrentNumber.textContent, operator);
     } else {
       if (operator == "=") {
-        equalsLeadsToCalculation(
-          savedNumber,
-          lastOperator,
-          parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent))
+        secondNumber = parseFloat(
+          replaceCommaWithDot(displayCurrentNumber.textContent)
         );
+        equalsLeadsToCalculation(firstNumber, lastOperator, secondNumber);
       } else {
+        secondNumber = parseFloat(
+          replaceCommaWithDot(displayCurrentNumber.textContent)
+        );
         operatorLeadsToCalculation(
-          savedNumber,
+          firstNumber,
           lastOperator,
-          parseFloat(replaceCommaWithDot(displayCurrentNumber.textContent)),
+          secondNumber,
           operator
         );
       }
@@ -245,12 +251,14 @@ function operatorClicked(operator) {
 ##########################################*/
 //Case O1
 function combineOperatorWithNumber(number, operator) {
-  savedNumber = parseFloat(replaceCommaWithDot(number));
-  savedNumberIsSet = true;
+  firstNumber = parseFloat(replaceCommaWithDot(number));
+  firstNumberIsSet = true;
+  secondNumber = parseFloat(replaceCommaWithDot(number));
+  secondNumberIsSet = true;
   //Case O2
   lastOperator = operator;
   displayCurrentCalculation.textContent =
-    replaceDotWithComma(savedNumber.toString()) + " " + operator;
+    replaceDotWithComma(firstNumber.toString()) + " " + operator;
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = false;
 }
@@ -258,6 +266,7 @@ function combineOperatorWithNumber(number, operator) {
 //Case O2
 function operatorLeadsToCalculation(x, operator, y, nextOperator) {
   result = calculate(x, operator, y).toFixed(3);
+  firstNumber = result;
   if (result == "Infinity") {
     alert("Nice try Dude. Start again");
     clearAll();
@@ -274,7 +283,7 @@ function operatorLeadsToCalculation(x, operator, y, nextOperator) {
 
 //Case O3
 function equalsLeadsToCalculation(x, operator, y) {
-  // x == savedNumber , operator == lastOperator, y == currentNumber
+  // x == firstNumber , operator == lastOperator, y == secondNumber
   if (isFirstResult) {
     result = calculate(x, operator, y).toFixed(3);
   } else {
@@ -297,7 +306,6 @@ function equalsLeadsToCalculation(x, operator, y) {
       " " +
       "=";
     isFirstResult = false;
-    savedNumber = y;
   } else {
     displayCurrentCalculation.textContent =
       replaceDotWithComma(y.toString()) +
@@ -308,6 +316,7 @@ function equalsLeadsToCalculation(x, operator, y) {
       " " +
       "=";
   }
+  firstNumber = result;
   displayCurrentNumber.textContent = replaceDotWithComma(result.toString());
   nextNumberWillAppend = false;
   nextNumberWillClearCalculationDisplay = true;
