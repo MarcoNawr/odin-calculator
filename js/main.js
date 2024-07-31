@@ -18,27 +18,21 @@ let nextNumberWillClear = false;
 /* #######################################################################
     Selectors
 #######################################################################*/
-let calculationDisplay = document.querySelector(".displayCurrentCalculation");
-let currentDisplay = document.querySelector(".displayCurrentNumber");
-let btnClear = document.querySelector("#btnClear");
-let btnBackspace = document.querySelector("#btnBackspace");
-let btn1 = document.querySelector("#btn1");
-let btn2 = document.querySelector("#btn2");
-let btn3 = document.querySelector("#btn3");
-let btn4 = document.querySelector("#btn4");
-let btn5 = document.querySelector("#btn5");
-let btn6 = document.querySelector("#btn6");
-let btn7 = document.querySelector("#btn7");
-let btn8 = document.querySelector("#btn8");
-let btn9 = document.querySelector("#btn9");
-let btn0 = document.querySelector("#btn0");
-let btnComma = document.querySelector("#btnComma");
-let btnNegate = document.querySelector("#btnNegate");
-let btnDivide = document.querySelector("#btnDivide");
-let btnMultiply = document.querySelector("#btnMultiply");
-let btnSubtract = document.querySelector("#btnSubtract");
-let btnAdd = document.querySelector("#btnAdd");
-let btnResult = document.querySelector("#btnResult");
+const calculationDisplay = document.querySelector(".displayCurrentCalculation");
+const currentDisplay = document.querySelector(".displayCurrentNumber");
+const btnClear = document.querySelector("#btnClear");
+const btnBackspace = document.querySelector("#btnBackspace");
+const btnComma = document.querySelector("#btnComma");
+const btnNegate = document.querySelector("#btnNegate");
+
+const numberButtons = document.querySelectorAll(".btnNumber");
+const operatorButtons = document.querySelectorAll(".btnOperator");
+
+const btnDivide = document.querySelector("#btnDivide");
+const btnMultiply = document.querySelector("#btnMultiply");
+const btnSubtract = document.querySelector("#btnSubtract");
+const btnAdd = document.querySelector("#btnAdd");
+const btnResult = document.querySelector("#btnResult");
 
 /* #######################################################################
       EventListener
@@ -46,62 +40,22 @@ let btnResult = document.querySelector("#btnResult");
 //TODO: Do this with a function not separate for each button
 //FIXME: Do this with a function not separate for each button
 
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    numberClicked(button.textContent);
+  });
+});
+
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    operatorClicked(button.textContent);
+  });
+});
+
 btnClear.addEventListener("click", clearAll);
 
 btnBackspace.addEventListener("click", () => {
   backspaceClicked();
-});
-
-btn1.addEventListener("click", () => {
-  numberClicked(btn1.textContent);
-});
-
-btn2.addEventListener("click", () => {
-  numberClicked(btn2.textContent);
-});
-
-btn3.addEventListener("click", () => {
-  numberClicked(btn3.textContent);
-});
-
-btn4.addEventListener("click", () => {
-  numberClicked(btn4.textContent);
-});
-
-btn5.addEventListener("click", () => {
-  numberClicked(btn5.textContent);
-});
-
-btn6.addEventListener("click", () => {
-  numberClicked(btn6.textContent);
-});
-
-btn7.addEventListener("click", () => {
-  numberClicked(btn7.textContent);
-});
-
-/* ########################################
-    Function Declaration for Basics
-##########################################*/
-
-function replaceCommaWithDot(wrongFormatString) {
-  return wrongFormatString.replace(",", ".");
-}
-
-function replaceDotWithComma(wrongFormatString) {
-  return wrongFormatString.replace(".", ",");
-}
-
-btn8.addEventListener("click", () => {
-  numberClicked(btn8.textContent);
-});
-
-btn9.addEventListener("click", () => {
-  numberClicked(btn9.textContent);
-});
-
-btn0.addEventListener("click", () => {
-  numberClicked(btn0.textContent);
 });
 
 btnComma.addEventListener("click", () => {
@@ -110,26 +64,6 @@ btnComma.addEventListener("click", () => {
 
 btnNegate.addEventListener("click", () => {
   negate();
-});
-
-btnDivide.addEventListener("click", () => {
-  operatorClicked(btnDivide.textContent);
-});
-
-btnMultiply.addEventListener("click", () => {
-  operatorClicked(btnMultiply.textContent);
-});
-
-btnSubtract.addEventListener("click", () => {
-  operatorClicked(btnSubtract.textContent);
-});
-
-btnAdd.addEventListener("click", () => {
-  operatorClicked(btnAdd.textContent);
-});
-
-btnResult.addEventListener("click", () => {
-  operatorClicked(btnResult.textContent);
 });
 
 /* #######################################################################
