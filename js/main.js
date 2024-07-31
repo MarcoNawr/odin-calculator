@@ -264,7 +264,7 @@ function operatorClicked(clickedOperator) {
     // OPERATORS LIKE +, - , / , *
     if (operatorLeadsToCalculation) {
       if (lastOperator == "=") {
-        // do nothing
+        firstNumber = parseFloat(currentDisplay.textContent);
       } else {
         result = calculate(firstNumber, lastOperator, secondNumber).toFixed(3);
         if (result == "Infinity") {
