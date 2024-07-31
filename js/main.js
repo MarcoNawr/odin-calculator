@@ -194,7 +194,10 @@ function calculate(a, operator, b) {
 function numberClicked(clickedNumber) {
   if (nextNumberWillAppend) {
     //APPEND NUMBER
-    updateDisplay(currentDisplay.textContent, clickedNumber);
+    if (currentDisplay.textContent.length <= 14) {
+      //FIXME: Erste Nummer = 0 ungewolltes aber nicht fehlerhaftes verhalten.
+      updateDisplay(currentDisplay.textContent, clickedNumber);
+    }
   } else if (nextNumberWillClear) {
     //NEW NUMBER WITH CLEAR
     clearAll();
@@ -261,11 +264,7 @@ function operatorClicked(clickedOperator) {
       if (lastOperator == "=") {
         // do nothing
       } else {
-        result = calculate(
-          replaceDotWithComma(firstNumber.toString()),
-          lastOperator,
-          replaceDotWithComma(secondNumber.toString())
-        ).toFixed(3);
+        result = calculate(firstNumber, lastOperator, secondNumber).toFixed(3);
         if (result == "Infinity") {
           alert("Nice try Dude. Start again");
           clearAll();
@@ -311,6 +310,7 @@ function negate() {
     let negatedNumber =
       parseFloat(replaceCommaWithDot(currentDisplay.textContent)) * -1;
     currentDisplay.textContent = replaceDotWithComma(negatedNumber.toString());
+    firstNumber = negatedNumber;
   }
 }
 
