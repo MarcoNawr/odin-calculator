@@ -267,6 +267,14 @@ function operatorClicked(clickedOperator) {
       nextNumberWillClear = true;
       operatorLeadsToCalculation = false;
       equalsLeadsToCalculation = true;
+    } else {
+      updateCalculationDisplay(currentDisplay, clickedOperator);
+      lastOperator = clickedOperator;
+      secondNumber = parseFloat(currentDisplay.textContent);
+      secondNumberIsSet = true;
+      operatorLeadsToCalculation = false;
+      equalsLeadsToCalculation = false;
+      nextNumberWillClear = false;
     }
   } else {
     // OPERATORS LIKE +, - , / , *
