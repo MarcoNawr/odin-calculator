@@ -78,35 +78,7 @@ btn6.addEventListener("click", () => {
 
 btn7.addEventListener("click", () => {
   numberClicked(btn7.textContent);
-}); //Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
-// IF the Operator , was clicked AND no comma set so far THEN
-// Append , to currentDisplay
-function appendComma(number) {
-  if (!number.includes(",")) {
-    currentDisplay.textContent += ",";
-  }
-}
-
-//Case 7 (NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
-// IF the Operator NEGATE was clicked AND currentDisplay!=0 THEN
-// negate currentDisplay
-function negate() {
-  if (currentDisplay != "0") {
-    let negatedNumber =
-      parseFloat(replaceCommaWithDot(currentDisplay.textContent)) * -1;
-    currentDisplay.textContent = replaceDotWithComma(negatedNumber.toString());
-  }
-}
-
-function backspaceClicked() {
-  if (currentDisplay.textContent.length > 1) {
-    let newString = currentDisplay.textContent.slice(0, -1);
-    currentDisplay.textContent = newString;
-  } else {
-    currentDisplay.textContent = "0";
-    nextNumberWillAppend = false;
-  }
-}
+});
 
 /* ########################################
     Function Declaration for Basics
@@ -168,17 +140,12 @@ function clearAll() {
   secondNumber = 0;
   lastOperator = "";
   result = 0;
-
   firstNumberIsSet = false;
   secondNumberIsSet = false;
-  //TODO: Why are they yellow?
   operatorLeadsToCalculation = false;
   equalsLeadsToCalculation = false;
-
   nextNumberWillAppend = false;
   nextNumberWillClear = false;
-  //isFirstResult = true;
-
   calculationDisplay.textContent = "empty";
   currentDisplay.textContent = "0";
 }
@@ -240,13 +207,13 @@ function numberClicked(clickedNumber) {
     nextNumberWillAppend = true;
   }
 
-  if (firstNumberIsSet && calculationDisplay.textContent != "empty") {
-    secondNumber = parseFloat(currentDisplay.textContent);
+  if (calculationDisplay.textContent != "empty") {
+    secondNumber = parseFloat(replaceCommaWithDot(currentDisplay.textContent));
     secondNumberIsSet = true;
     operatorLeadsToCalculation = true;
     equalsLeadsToCalculation = true;
   } else {
-    firstNumber = parseFloat(currentDisplay.textContent);
+    firstNumber = parseFloat(replaceCommaWithDot(currentDisplay.textContent));
     firstNumberIsSet = true;
     operatorLeadsToCalculation = false;
     equalsLeadsToCalculation = false;
@@ -261,15 +228,20 @@ function operatorClicked(clickedOperator) {
   if (clickedOperator == "=") {
     // OPERATOR =
     if (equalsLeadsToCalculation) {
-      calculate(firstNumber, lastOperator, secondNumber);
+      result = calculate(firstNumber, lastOperator, secondNumber).toFixed(3);
       if (result == "Infinity") {
         alert("Nice try Dude. Start again");
         clearAll();
         return;
       }
-      updateCalculationDisplay(firstNumber, lastOperator, secondNumber, "=");
-      firstNumber = result;
-      updateDisplay(result);
+      updateCalculationDisplay(
+        replaceDotWithComma(firstNumber.toString()),
+        lastOperator,
+        replaceDotWithComma(secondNumber.toString()),
+        "="
+      );
+      firstNumber = parseFloat(result);
+      updateDisplay(replaceDotWithComma(result));
       nextNumberWillAppend = false;
       nextNumberWillClear = true;
       operatorLeadsToCalculation = false;
@@ -289,15 +261,19 @@ function operatorClicked(clickedOperator) {
       if (lastOperator == "=") {
         // do nothing
       } else {
-        result = calculate(firstNumber, lastOperator, secondNumber);
+        result = calculate(
+          replaceDotWithComma(firstNumber.toString()),
+          lastOperator,
+          replaceDotWithComma(secondNumber.toString())
+        ).toFixed(3);
         if (result == "Infinity") {
           alert("Nice try Dude. Start again");
           clearAll();
           return;
         }
-        firstNumber = result;
+        firstNumber = parseFloat(result);
         firstNumberIsSet = true;
-        updateDisplay(result);
+        updateDisplay(replaceDotWithComma(result));
       }
     } else {
       // will be done for all cases. Thats why the setting comes after this else line
@@ -323,6 +299,7 @@ function operatorClicked(clickedOperator) {
 function appendComma(number) {
   if (!number.includes(",")) {
     currentDisplay.textContent += ",";
+    nextNumberWillAppend = true;
   }
 }
 
