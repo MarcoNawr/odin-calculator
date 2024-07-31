@@ -57,7 +57,7 @@
 ########################################################################################################### */
 .btn {
   font-size: 1.2rem;
-  /*felxcild*/
+  /*flexchild*/
   flex-grow: 1;
 }
 
@@ -126,7 +126,7 @@
   border-radius: var(--stdRadius);
   border: 2px solid black;
   max-width: 800px;
-  min-width: 300px;
+  min-width: 500px;
 
   background: hsla(64, 41%, 92%, 1);
   background: linear-gradient(
@@ -160,11 +160,12 @@
 ########################################################################################################### */
 .displayCurrentCalculation {
   text-align: right;
-  font-size: 1rem;
+  font-size: 0.75rem;
   margin-top: 20px;
-  padding: 10px 20px 10px 20px;
-  border-radius: var(--stdRadius);
-  background: #f1f1f1;
+  padding: 8px 20px 8px 20px;
+  border-top-left-radius: var(--stdRadius);
+  border-top-right-radius: var(--stdRadius);
+  background: #fafafa;
   box-shadow: 5px 5px 0px 2px #000000;
 }
 
@@ -176,8 +177,9 @@
   font-size: 2rem;
   margin-bottom: 20px;
   padding: 10px 20px 10px 20px;
-  border-radius: var(--stdRadius);
-  background: #e0e0e0;
+  border-bottom-left-radius: var(--stdRadius);
+  border-bottom-right-radius: var(--stdRadius);
+  background: #ffffff;
   box-shadow: 5px 5px 0px 2px #000000;
 }
 
