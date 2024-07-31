@@ -258,7 +258,16 @@ function numberClicked(clickedNumber) {
 function operatorClicked(clickedOperator) {
   if (clickedOperator == "=") {
     // OPERATOR =
-    //TODO:_
+    if (equalsLeadsToCalculation) {
+      calculate(firstNumber, lastOperator, secondNumber);
+      updateDisplay(firstNumber, lastOperator, secondNumber, "=");
+      firstNumber = result;
+      updateDisplay(result);
+      nextNumberWillAppend = false;
+      nextNumberWillClear = true;
+      operatorLeadsToCalculation = false;
+      equalsLeadsToCalculation = true;
+    }
   } else {
     // OPERATORS LIKE +, - , / , *
     if (operatorLeadsToCalculation) {
