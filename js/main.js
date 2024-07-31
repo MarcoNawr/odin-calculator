@@ -294,9 +294,7 @@ function operatorClicked(clickedOperator) {
       Function Declaration for Basics
   ##########################################*/
 
-//Case 6 (,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
-// IF the Operator , was clicked AND no comma set so far THEN
-// Append , to currentDisplay
+//(,) ==> OPERATOR , ==> APPEND , TO CURRENT DISPLAYED NUMBER
 function appendComma(number) {
   if (!number.includes(",")) {
     currentDisplay.textContent += ",";
@@ -304,9 +302,7 @@ function appendComma(number) {
   }
 }
 
-//Case 7 (NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
-// IF the Operator NEGATE was clicked AND currentDisplay!=0 THEN
-// negate currentDisplay
+//(NEGATE) ==> OPERATOR NEGATE ==> NEGATE CURRENT DISPLAYED NUMBER
 function negate() {
   if (currentDisplay != "0") {
     let negatedNumber =
