@@ -18,8 +18,8 @@ let nextNumberWillClear = false;
 /* #######################################################################
     Selectors
 #######################################################################*/
-let calculationDisplay = document.querySelector(".calculationDisplay");
-let currentDisplay = document.querySelector(".currentDisplay");
+let calculationDisplay = document.querySelector(".displayCurrentCalculation");
+let currentDisplay = document.querySelector(".displayCurrentNumber");
 let btnClear = document.querySelector("#btnClear");
 let btnBackspace = document.querySelector("#btnBackspace");
 let btn1 = document.querySelector("#btn1");
@@ -217,7 +217,7 @@ function calculate(a, operator, b) {
     default:
       alert("Something wrong with the operator!");
   }
-  nextNumberWillAppend = false;
+  //nextNumberWillAppend = false;
   return result;
 }
 
@@ -233,12 +233,14 @@ function numberClicked(clickedNumber) {
     clearAll();
     updateDisplay(clickedNumber);
     nextNumberWillClear = false;
+    nextNumberWillAppend = true;
   } else {
     //NEW NUMBER
     updateDisplay(clickedNumber);
+    nextNumberWillAppend = true;
   }
 
-  if (firstNumberIsSet) {
+  if (firstNumberIsSet && calculationDisplay.textContent != "empty") {
     secondNumber = parseFloat(currentDisplay.textContent);
     secondNumberIsSet = true;
     operatorLeadsToCalculation = true;
@@ -260,7 +262,12 @@ function operatorClicked(clickedOperator) {
     // OPERATOR =
     if (equalsLeadsToCalculation) {
       calculate(firstNumber, lastOperator, secondNumber);
-      updateDisplay(firstNumber, lastOperator, secondNumber, "=");
+      if (result == "Infinity") {
+        alert("Nice try Dude. Start again");
+        clearAll();
+        return;
+      }
+      updateCalculationDisplay(firstNumber, lastOperator, secondNumber, "=");
       firstNumber = result;
       updateDisplay(result);
       nextNumberWillAppend = false;
@@ -268,7 +275,7 @@ function operatorClicked(clickedOperator) {
       operatorLeadsToCalculation = false;
       equalsLeadsToCalculation = true;
     } else {
-      updateCalculationDisplay(currentDisplay, clickedOperator);
+      updateCalculationDisplay(currentDisplay.textContent, clickedOperator);
       lastOperator = clickedOperator;
       secondNumber = parseFloat(currentDisplay.textContent);
       secondNumberIsSet = true;
@@ -279,12 +286,18 @@ function operatorClicked(clickedOperator) {
   } else {
     // OPERATORS LIKE +, - , / , *
     if (operatorLeadsToCalculation) {
-      if ((lastOperator = "=")) {
+      if (lastOperator == "=") {
         // do nothing
       } else {
         result = calculate(firstNumber, lastOperator, secondNumber);
+        if (result == "Infinity") {
+          alert("Nice try Dude. Start again");
+          clearAll();
+          return;
+        }
         firstNumber = result;
         firstNumberIsSet = true;
+        updateDisplay(result);
       }
     } else {
       // will be done for all cases. Thats why the setting comes after this else line
@@ -296,6 +309,7 @@ function operatorClicked(clickedOperator) {
     operatorLeadsToCalculation = false;
     equalsLeadsToCalculation = true;
     nextNumberWillClear = false;
+    nextNumberWillAppend = false;
   }
 }
 
@@ -341,10 +355,16 @@ function replaceDotWithComma(wrongFormatString) {
   return wrongFormatString.replace(".", ",");
 }
 
-function updateDisplay(...args) {
-  currentDisplay.textContent = args.join(" ");
+function updateDisplay() {
+  currentDisplay.textContent = "";
+  for (let i = 0; i < arguments.length; i++) {
+    currentDisplay.textContent += arguments[i];
+  }
 }
 
-function updateCalculationDisplay(...args) {
-  calculationDisplay.textContent = args.join(" ");
+function updateCalculationDisplay() {
+  calculationDisplay.textContent = "";
+  for (let i = 0; i < arguments.length; i++) {
+    calculationDisplay.textContent += arguments[i];
+  }
 }
