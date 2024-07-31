@@ -226,12 +226,15 @@ function calculate(a, operator, b) {
 ##########################################*/
 function numberClicked(clickedNumber) {
   if (nextNumberWillAppend) {
+    //APPEND NUMBER
     updateDisplay(currentDisplay.textContent, clickedNumber);
   } else if (nextNumberWillClear) {
+    //NEW NUMBER WITH CLEAR
     clearAll();
     updateDisplay(clickedNumber);
     nextNumberWillClear = false;
   } else {
+    //NEW NUMBER
     updateDisplay(clickedNumber);
   }
 
@@ -246,18 +249,6 @@ function numberClicked(clickedNumber) {
     operatorLeadsToCalculation = false;
     equalsLeadsToCalculation = false;
   }
-}
-
-function newNumber(number) {
-  //TODO:
-}
-
-function appendNumber(number) {
-  //TODO:
-}
-
-function newNumberWithClear(number) {
-  //TODO:
 }
 
 /* ########################################
