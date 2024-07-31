@@ -230,7 +230,7 @@ function numberClicked(clickedNumber) {
 function operatorClicked(clickedOperator) {
   if (clickedOperator == "=") {
     // OPERATOR =
-    if (equalsLeadsToCalculation) {
+    if (equalsLeadsToCalculation && lastOperator != "=") {
       result = calculate(firstNumber, lastOperator, secondNumber).toFixed(3);
       if (result == "Infinity") {
         alert("Nice try Dude. Start again");
@@ -251,12 +251,14 @@ function operatorClicked(clickedOperator) {
       equalsLeadsToCalculation = true;
     } else {
       updateCalculationDisplay(currentDisplay.textContent, clickedOperator);
+      firstNumber = parseFloat(currentDisplay.textContent);
       lastOperator = clickedOperator;
       secondNumber = parseFloat(currentDisplay.textContent);
       secondNumberIsSet = true;
       operatorLeadsToCalculation = false;
       equalsLeadsToCalculation = false;
       nextNumberWillClear = false;
+      nextNumberWillAppend = false;
     }
   } else {
     // OPERATORS LIKE +, - , / , *
