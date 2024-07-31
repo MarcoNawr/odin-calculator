@@ -239,12 +239,12 @@ function numberClicked(clickedNumber) {
   }
 
   if (firstNumberIsSet) {
-    secondNumber = currentDisplay.textContent;
+    secondNumber = parseFloat(currentDisplay.textContent);
     secondNumberIsSet = true;
     operatorLeadsToCalculation = true;
     equalsLeadsToCalculation = true;
   } else {
-    firstNumber = currentDisplay.textContent;
+    firstNumber = parseFloat(currentDisplay.textContent);
     firstNumberIsSet = true;
     operatorLeadsToCalculation = false;
     equalsLeadsToCalculation = false;
@@ -255,7 +255,32 @@ function numberClicked(clickedNumber) {
     Function Call & Declaration for Operators
 ##########################################*/
 
-function operatorClicked(operator) {}
+function operatorClicked(clickedOperator) {
+  if (clickedOperator == "=") {
+    // OPERATOR =
+    //TODO:_
+  } else {
+    // OPERATORS LIKE +, - , / , *
+    if (operatorLeadsToCalculation) {
+      if ((lastOperator = "=")) {
+        // do nothing
+      } else {
+        result = calculate(firstNumber, lastOperator, secondNumber);
+        firstNumber = result;
+        firstNumberIsSet = true;
+      }
+    } else {
+      // will be done for all cases. Thats why the setting comes after this else line
+    }
+    updateCalculationDisplay(currentDisplay.textContent, clickedOperator);
+    lastOperator = clickedOperator;
+    secondNumber = parseFloat(currentDisplay.textContent);
+    secondNumberIsSet = true;
+    operatorLeadsToCalculation = false;
+    equalsLeadsToCalculation = true;
+    nextNumberWillClear = false;
+  }
+}
 
 /* ########################################
       Function Declaration for Basics
